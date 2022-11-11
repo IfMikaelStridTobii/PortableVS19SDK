@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardEmulatorContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.Devices.SmartCards.KnownSmartCardAppletIds">
+      <summary>既知のスマート カード アプレット ID の選択範囲を表すクラス。そのプロパティを使用してそれらを公開します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.PaymentSystemEnvironment">
+      <summary>決済システム環境 (PSE) アプリケーションのアプレット ID を取得します。</summary>
+      <returns>PSE アプレット ID を格納する IBuffer。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.ProximityPaymentSystemEnvironment">
+      <summary>近接決済システム環境 (PPSE) アプリケーションのアプレット ID を取得します。</summary>
+      <returns>PPSE アプレット ID を格納する IBuffer。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult">
+      <summary>RequestActivationPolicyChangeAsync メソッドの戻り値を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Allowed">
+      <summary>ポリシーの変更が許可されました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Denied">
+      <summary>ポリシーの変更は許可されませんでした。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroup">
+      <summary>デジタル化されたカードなどを表すクラス。自己管理型（ホスト カード エミュレーション）の場合と、物理的な埋め込みセキュア エレメント (eSE) によってサポートされている場合があります。 このクラスは、スマート カード アプレット ID のコレクションを定義していると考えることもできます。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor">
+      <summary>SmartCardAppletIdGroup クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor(System.String,Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IBuffer},Windows.Devices.SmartCards.SmartCardEmulationCategory,Windows.Devices.SmartCards.SmartCardEmulationType)">
+      <summary>指定されたパラメーターを使用して、SmartCardAppletIdGroup クラスの新しいインスタンスを初期化します。</summary>
+      <param name="displayName">このアプレット ID のグループの名前。</param>
+      <param name="appletIds">アプレット ID のリスト。</param>
+      <param name="emulationCategory">アプレット ID が適用されるスマート カード、支払用カード、またはその他のカテゴリ。</param>
+      <param name="emulationType">アプレット ID が適用されるスマート カード、ホスト カード、または UICC の種類。</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AppletIds">
+      <summary>アプレット ID のコレクションを取得します。</summary>
+      <returns>アプレット ID のコレクション。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AutomaticEnablement">
+      <summary>オペレーティング システムでこの AppletIdGroup の有効化が許可されているかどうかを示すブール値を取得または設定します。</summary>
+      <returns>オペレーティング システムでこの AppletIdGroup の有効化が許可されているかどうかを示すブール値。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Description">
+      <summary>スマート カードを見分けやすくするためのスマート カードの拡張された説明を取得または設定します。 たとえば、これをクレジット カード番号の末尾 4 桁に設定することもできます。</summary>
+      <returns>拡張されたスマート カードの説明を含む文字列。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.DisplayName">
+      <summary>このアプレット ID のグループの名前を設定または取得します。</summary>
+      <returns>このアプレット ID のグループの名前。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Logo">
+      <summary>スマート カードを表すイメージを取得または設定します。 たとえば、クレジット カードの物理的な外観に似せたイメージを使用できます。</summary>
+      <returns>スマート カードを表すイメージを含むストリームへのアクセスを提供する IRandomAccessStreamReference。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.MaxAppletIds">
+      <summary>使用できるアプレット ID の最大数を取得します。</summary>
+      <returns>使用できるアプレット ID の最大数。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Properties">
+      <summary>スマート カードの (汎用の) プロパティ バッグを取得します。</summary>
+      <returns>スマート カードの (汎用の) プロパティ バッグを含む ValueSet。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SecureUserAuthenticationRequired">
+      <summary>スマート カードでトランザクションを処理する前に、スマート カードがユーザーに安全な生体認証を使用して認証することを要求するかどうかを示す値を取得または設定します (たとえば、ユーザーが指紋リーダーをタップして支払いを承認するなど)。 このプロパティは、埋め込みセキュア エレメント (eSE) ベースのアプレットにのみ適用されます。</summary>
+      <returns>スマート カードでトランザクションを処理する前に安全な生体認証を使用して認証することをスマート カードがユーザーに要求する場合は `true`、それ以外の場合は `false`。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationCategory">
+      <summary>アプレット ID が適用されるスマート カード、支払用カード、またはその他のカテゴリを設定または取得します。</summary>
+      <returns>アプレット ID が適用されるスマート カード、支払用カード、またはその他のカテゴリ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationType">
+      <summary>アプレット ID が適用されるスマート カード、ホスト カード、または UICC の種類を設定または取得します。</summary>
+      <returns>アプレット ID が適用されるスマート カード、ホスト カード、または UICC の種類。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy">
+      <summary>RequestActivationPolicyChangeAsync メソッドへ渡すことができる有効な値を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Disabled">
+      <summary>アクティブ化ポリシーは、無効に設定されています。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Enabled">
+      <summary>アクティブ化ポリシーは、有効に設定されています。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.ForegroundOverride">
+      <summary>アクティブ化ポリシーは、フォアグラウンドで上書きするように設定されています。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration">
+      <summary>アプレット ID の登録済みのグループを表します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.ActivationPolicy">
+      <summary>登録済みのアプレット ID のグループのアクティブ化ポリシーを取得します。</summary>
+      <returns>登録済みのアプレット ID のグループのアクティブ化ポリシー。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.AppletIdGroup">
+      <summary>アプレット ID の登録済みのグループを取得します。</summary>
+      <returns>アプレット ID の登録済みのグループ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.Id">
+      <summary>このアプレット ID のグループの登録を表す一意の ID を取得します。</summary>
+      <returns>このアプレット ID グループの登録を表す一意の ID。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SmartCardReaderId">
+      <summary>セキュア エレメントに関連付けられた任意 SmartCardReader の ID を取得します。 この ID を SmartCardReader.FromIdAsync に渡すことができます。</summary>
+      <returns>セキュア エレメントに関連付けられた任意の SmartCardReader の ID を含む文字列。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.RequestActivationPolicyChangeAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy)">
+      <summary>登録済みのアプレット ID のこのグループで ActivationPolicy の非同期での変更を試みます。</summary>
+      <param name="policy">新しいアクティブ化ポリシー。</param>
+      <returns>ポリシーの変更が許可されたか、拒否されたかを示します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetAutomaticResponseApdusAsync(Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu})">
+      <summary>この SmartCardAppletIdGroupRegistration に対して返す自動応答が格納されている SmartCardAutomaticResponseApdu オブジェクトのコレクションを設定します。</summary>
+      <param name="apdus">自動応答のコレクション。</param>
+      <returns>要求された操作を実行したときに完了する非同期アクション。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetPropertiesAsync(Windows.Foundation.Collections.ValueSet)">
+      <summary>SmartCardAppletIdGroup.Properties の値を非同期的に設定します。</summary>
+      <param name="props">スマート カードの (汎用の) プロパティ バッグを含む ValueSet。</param>
+      <returns>非同期的なプロパティ設定アクション。プロパティが設定されると完了します。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu">
+      <summary>スマート カードの自動応答アプリケーション プロトコル データ ユニット (APDU) を表します。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.#ctor(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <summary>クラスの新しいインスタンスを初期化します。</summary>
+      <param name="commandApdu">NFC リーダーから送信される APDU コマンド。</param>
+      <param name="responseApdu">NFC リーダーに対する応答。</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AllowWhenCryptogramGeneratorNotPrepared">
+      <summary>ユーザー認証なしで使用するための暗号文素材を準備できない場合に自動 APDU 処理を続行するかどうかを示すブール値を取得または設定します。</summary>
+      <returns>ユーザー認証なしで使用するための暗号文素材を準備できない場合に自動 APDU 処理を続行するかどうかを示すブール値。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AppletId">
+      <summary>この APDU のアプレット識別子を取得または設定します。</summary>
+      <returns>この APDU のアプレット識別子。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApdu">
+      <summary>この APDU のコマンドを取得または設定します。</summary>
+      <returns>この APDU のコマンド。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApduBitMask">
+      <summary>APDU コマンドのビットマスクを取得または設定します。</summary>
+      <returns>APDU コマンドのビットマスク。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.InputState">
+      <summary>入力状態を取得および配置します。</summary>
+      <returns>入力状態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.OutputState">
+      <summary>出力状態を取得および配置します。</summary>
+      <returns>出力状態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ResponseApdu">
+      <summary>アプリケーション プロトコル データ ユニット (APDU) からの応答を取得または設定します。</summary>
+      <returns>APDU からの応答。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ShouldMatchLength">
+      <summary>CommandApdu と着信コマンドの長さが厳密に一致しているべきかどうかを示すブール値を取得または設定します。</summary>
+      <returns>CommandApdu と着信コマンドの長さが厳密に一致しているべきかどうかを示すブール値。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus">
+      <summary>スマート カード リーダーの自動応答の状態を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.None">
+      <summary>状態が指定されていません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.Success">
+      <summary>読み取りに成功しました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.UnknownError">
+      <summary>識別されていないエラーが発生する可能性があります。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm">
+      <summary>暗号文の配置手順の暗号文の生成アルゴリズムを定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.CbcMac">
+      <summary>メッセージ認証コード (CBC-MAC) アルゴリズムをチェーンする暗号ブロックを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3MD">
+      <summary>CVC3-MD アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3Umd">
+      <summary>CVC3-UMD アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.DecimalizedMsd">
+      <summary>10 進数化された MSD アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.None">
+      <summary>アルゴリズムを使用しないでください。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.RsaPkcs1">
+      <summary>Public-Key Cryptography Standards 1 (PKCS) RSA アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha1">
+      <summary>SHA-1 アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha256Hmac">
+      <summary>SHA-256 HMAC アルゴリズムを使用します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.SignedDynamicApplicationData">
+      <summary>符号付き動的データ アプリケーション アルゴリズムを使用します。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGenerator">
+      <summary>安全な支払いアプリケーションおよびプロトコル用にサポートされるハードウェアを実現するための機能を表します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramAlgorithms">
+      <summary>サポートされている暗号文アルゴリズムを取得します。</summary>
+      <returns>サポートされるアルゴリズム。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageConfirmationResponseFormats">
+      <summary>サポートされている暗号文素材パッケージ確認応答形式を取得します。</summary>
+      <returns>サポートされている暗号文素材パッケージ確認応答形式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageFormats">
+      <summary>サポートされている暗号文素材パッケージ形式を取得します。</summary>
+      <returns>サポートされている暗号文素材パッケージ形式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialTypes">
+      <summary>サポートされている暗号文素材の種類を取得します。</summary>
+      <returns>サポートされている暗号文素材の種類。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedSmartCardCryptogramStorageKeyCapabilities">
+      <summary>サポートされているスマート カード暗号文ストレージ キーの機能を取得します。</summary>
+      <returns>サポートされているスマート カード暗号文ストレージ キーの機能。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.CreateCryptogramMaterialStorageKeyAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities)">
+      <summary>暗号文ストレージ キーを生成します。</summary>
+      <param name="promptingBehavior">ユーザー プロンプト動作。</param>
+      <param name="storageKeyName">新しいストレージ キーの名前。</param>
+      <param name="algorithm">ストレージ キーとともに使用する暗号化アルゴリズム。</param>
+      <param name="capabilities">新しいストレージ キーの機能。</param>
+      <returns>ストレージ キーの作成試行の後の操作状態で完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialPackageAsync(System.String)">
+      <summary>暗号文素材パッケージを削除します。</summary>
+      <param name="materialPackageName">素材パッケージ名。</param>
+      <returns>プロンプト動作の完了の後の操作状態で完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialStorageKeyAsync(System.String)">
+      <summary>アプリケーションのストレージ キーと格納されているすべてのパッケージを削除します。</summary>
+      <param name="storageKeyName">ストレージ キーの名前。</param>
+      <returns>操作状態ありで完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialCharacteristicsAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String)">
+      <summary>すべての暗号文素材の特性を取得します。</summary>
+      <param name="promptingBehavior">プロンプト動作。</param>
+      <param name="materialPackageName">素材パッケージ名。</param>
+      <returns>特性結果ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync">
+      <summary>すべての暗号文素材パッケージ特性を取得します。</summary>
+      <returns>パッケージ特性結果ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync(System.String)">
+      <summary>すべての暗号文素材パッケージ特性を取得します。</summary>
+      <param name="storageKeyName">ストレージ キー名。</param>
+      <returns>パッケージ特性結果ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramStorageKeyCharacteristicsAsync">
+      <summary>すべてのストレージ キー特性を取得します。</summary>
+      <returns>特性結果ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetSmartCardCryptogramGeneratorAsync">
+      <summary>スマート カード暗号文ジェネレーターを取得します。</summary>
+      <returns>ジェネレーターで完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ImportCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>暗号文パッケージをインポートします。</summary>
+      <param name="format">パッケージの形式。</param>
+      <param name="storageKeyName">ストレージ キーの名前。</param>
+      <param name="materialPackageName">パッケージの名前。</param>
+      <param name="cryptogramMaterialPackage">暗号文パッケージ データを含むバッファー。</param>
+      <returns>パッケージのインポート試行の後の操作状態で完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.IsSupported">
+      <summary>SmartCardCryptogramGenerator がサポートされているかどうかを返します。</summary>
+      <returns>SmartCardCryptogramGenerator がサポートされている場合は true。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestCryptogramMaterialStorageKeyInfoAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType)">
+      <summary>暗号文ストレージ キーに関連する公開キーと証明情報を返します。</summary>
+      <param name="promptingBehavior">検証のためにユーザーに表示されるプロンプト動作。</param>
+      <param name="storageKeyName">ストレージ キーの名前。</param>
+      <param name="format">ストレージ キーの公開キーを返す形式。</param>
+      <returns>スマート カード暗号文ストレージ キー情報を返す非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestUnlockCryptogramMaterialForUseAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior)">
+      <summary>以前にインポートした暗号文素材パッケージを使用する準備ができていることを要求します。</summary>
+      <param name="promptingBehavior">ロック解除プロンプト動作。</param>
+      <returns>プロンプト動作の完了の後の操作状態で完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.TryProvePossessionOfCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>このメソッドでは、支払いアプリケーションが素材パッケージの所有を証明するために暗号文ジェネレーターを問い合わせることができます。</summary>
+      <param name="promptingBehavior">検証のためにユーザーに表示されるプロンプト動作。</param>
+      <param name="responseFormat">応答の形式。</param>
+      <param name="materialPackageName">素材パッケージ名。</param>
+      <param name="materialName">素材名。</param>
+      <param name="challenge">確認チャレンジ トークンを格納するバッファー。 チャレンジ トークンは、次の C# 正規表現に適合する UTF-8 文字で構成されている必要があります。 ```</param>
+      <returns>素材所有証明付きで完了する非同期操作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ValidateRequestApduAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>APDU 要求を検証します。</summary>
+      <param name="promptingBehavior">プロンプト動作。</param>
+      <param name="apduToValidate">検証対象の APDU。</param>
+      <param name="cryptogramPlacementSteps">暗号文配置ステップ。</param>
+      <returns>操作状態ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus">
+      <summary>暗号文ジェネレーター メソッドの状態を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ApduResponseNotSent">
+      <summary>APDU 応答が送られませんでした。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationCanceled">
+      <summary>認証は取り消されました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationFailed">
+      <summary>認証が失敗しました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationRequired">
+      <summary>認証が必要です。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.CryptogramMaterialPackageStorageKeyExists">
+      <summary>暗号文素材パッケージのストレージ キーは既に存在します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.InvalidCryptogramMaterialUsage">
+      <summary>無効な暗号文素材の使用。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackage">
+      <summary>暗号文素材パッケージがありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackageStorageKey">
+      <summary>暗号文素材パッケージ ストレージ キーがありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NotSupported">
+      <summary>この操作はサポートされていません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.OtherError">
+      <summary>不明なエラーが発生しました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.Success">
+      <summary>操作が正常に完了しました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnknownCryptogramMaterialName">
+      <summary>パッケージを開くときに、指定された素材名が見つかりませんでした。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnsupportedCryptogramMaterialPackage">
+      <summary>暗号文素材パッケージがサポートされていません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ValidationFailed">
+      <summary>検証に失敗しました。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult">
+      <summary>このクラスには、GetAllCryptogramMaterialCharacteristicsAsync によって返される情報が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult のインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Characteristics">
+      <summary>特性を取得します。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramMaterialCharacteristicsAsync 操作の操作状態を取得します。</summary>
+      <returns>GetAllCryptogramMaterialCharacteristicsAsync 操作の操作状態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult">
+      <summary>このクラスには、GetAllCryptogramMaterialPackageCharacteristicsAsync によって返される情報が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult のインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Characteristics">
+      <summary>特性を取得します。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramMaterialPackageCharacteristicsAsync の操作状態を取得します。</summary>
+      <returns>GetAllCryptogramMaterialPackageCharacteristicsAsync の操作状態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult">
+      <summary>このクラスには、GetAllCryptogramStorageKeyCharacteristicsAsync によって返される情報が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult の新しいインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Characteristics">
+      <summary>特性を取得します。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramStorageKeyCharacteristicsAsync の操作状態を取得します。</summary>
+      <returns>GetAllCryptogramStorageKeyCharacteristicsAsync の操作状態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics">
+      <summary>このクラスには、暗号文素材の特性が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.#ctor">
+      <summary>SmartCardCryptogramMaterialCharacteristics の新しいインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedAlgorithms">
+      <summary>許可されたアルゴリズムを取得します。</summary>
+      <returns>許可されたアルゴリズム。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedProofOfPossessionAlgorithms">
+      <summary>所有アルゴリズムの許可された証明を取得します。</summary>
+      <returns>所有アルゴリズムの許可された証明。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedValidations">
+      <summary>許可された検証アルゴリズムを取得します。</summary>
+      <returns>許可された検証アルゴリズム。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialLength">
+      <summary>素材の長さを取得します。</summary>
+      <returns>素材の長さ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialName">
+      <summary>素材名を取得します。</summary>
+      <returns>素材名。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialType">
+      <summary>素材の種類を取得します。</summary>
+      <returns>素材の種類。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionMethod">
+      <summary>保護方法を取得します。</summary>
+      <returns>保護方法。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionVersion">
+      <summary>保護バージョンを取得します。</summary>
+      <returns>保護バージョン。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics">
+      <summary>このクラスには、暗号文素材パッケージの特性が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.#ctor">
+      <summary>SmartCardCryptogramMaterialPackageCharacteristics の新しいインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.DateImported">
+      <summary>素材パッケージがインポートされた日付を取得します。</summary>
+      <returns>素材パッケージがインポートされた日付。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageFormat">
+      <summary>パッケージの形式を取得します。</summary>
+      <returns>パッケージの形式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageName">
+      <summary>パッケージ名を取得します。</summary>
+      <returns>パッケージの名前。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.StorageKeyName">
+      <summary>ストレージ キー名を取得します。</summary>
+      <returns>ストレージ キー名。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat">
+      <summary>TryProvePossessionOfCryptogramMaterialPackageAsync メソッドを呼び出すときに返される所有証明の書式を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.None">
+      <summary>形式が指定されていません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.VisaHmac">
+      <summary>Visa ハッシュベース メッセージ認証コード (HMAC) 形式。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat">
+      <summary>暗号文素材パッケージ形式を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.JweRsaPki">
+      <summary>素材パッケージは、RSA により JSON Web 暗号化 (JWE) されています。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.None">
+      <summary>素材に形式がありません。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof">
+      <summary>識別された暗号文素材をデバイスが所有することを証明するためのチャレンジ トークンと共に、TryProvePossessionOfCryptogramMaterialPackageAsync 呼び出しの結果が含まれます。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.OperationStatus">
+      <summary>証明操作の操作状態を取得または設定します。</summary>
+      <returns>操作状態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.Proof">
+      <summary>所有操作の証明の結果を取得します。 このフィールドは、OperationStatus フィールドが Success の場合のみ有効です。</summary>
+      <returns>所有操作の証明の成功による結果を含むバッファー。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod">
+      <summary>暗号文素材の保護方法を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.None">
+      <summary>暗号文素材を保護しません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.WhiteBoxing">
+      <summary>ホワイトボックス化によって暗号文素材を保護します。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType">
+      <summary>暗号文素材の種類を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.Aes">
+      <summary>素材は、AES を使用して生成されるデータです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.None">
+      <summary>素材にデータ型はありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.RsaPkcs1">
+      <summary>素材は PKCS #1 に従った RSA を使用して生成されるデータです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.StaticDataAuthentication">
+      <summary>素材は認証のための静的データです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.TripleDes112">
+      <summary>素材データは、TripleDes112 を使用して生成されます。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions">
+      <summary>暗号文配置オプションを定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.ChainOutput">
+      <summary>配置手順の出力は、指定したステップにチェーンする必要があります。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.None">
+      <summary>配置オプションに定義形式がありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.UnitsAreInNibbles">
+      <summary>CryptogramOffset、TemplateOffset と CryptogramLength 値はニブル単位であり、バイト単位ではありません。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep">
+      <summary>送信メッセージの暗号文を配置する手順について説明します。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.#ctor">
+      <summary>新しい SmartCardCryptogramPlacementStep オブジェクトを構築します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.Algorithm">
+      <summary>次の指定された配置手順への入力としてこの配置手順の出力を使用する、省略可能な配置ステップを取得または設定します。</summary>
+      <returns>チェーンされたステップのターゲット。 この配置ステップがチェーンされていない場合、値は null にする必要があります。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.ChainedOutputStep">
+      <summary>このチェーン ステップの出力を取得または設定します。</summary>
+      <returns>このチェーン ステップの出力。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramLength">
+      <summary>オフセットから取得する出力の長さを取得または設定します。</summary>
+      <returns>送信メッセージに挿入される暗号文が、この長さを超えることはできません。 単位は、CryptogramPlacementOptions プロパティの UnitsAreInNibbles フラグに基づいて、バイトまたはニブルになります。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialName">
+      <summary>この手順を実行するときに使用する暗号文素材の名前を取得または設定します。</summary>
+      <returns>この送信メッセージに含める暗号文の生成に使用する暗号文素材名。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialPackageName">
+      <summary>指定された素材を含む暗号文素材パッケージ名を取得または設定します。</summary>
+      <returns>指定された暗号文素材が見つからない可能性がある暗号文素材パッケージ名。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramOffset">
+      <summary>送信メッセージに含める暗号文を生成するのに使用されるデータを取得または設定します。</summary>
+      <returns>送信されるメッセージにコピーされる、生成された暗号文のオフセット。 単位は、CryptogramPlacementOptions フィールドの UnitsAreInNibbles フラグに基づいて、バイトまたはニブルになります。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramPlacementOptions">
+      <summary>暗号文配置オプションを取得または設定します。</summary>
+      <returns>暗号文配置オプション。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.SourceData">
+      <summary>暗号文のチェーンのこの手順で暗号化されたデータを取得または設定します。</summary>
+      <returns>ソース データ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.TemplateOffset">
+      <summary>生成された暗号文が配置されるターゲット出力バッファーへのオフセットを取得または設定します。 単位は、CryptogramPlacementOptions フィールドの UnitsAreInNibbles フラグに基づいて、バイトまたはニブルになります。</summary>
+      <returns>データ テンプレート オフセット。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm">
+      <summary>暗号文ストレージ キー アルゴリズムを定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.None">
+      <summary>ストレージ キーは暗号化されていません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.Rsa2048">
+      <summary>ストレージ キーは RSA-2048 によって暗号化されていません。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities">
+      <summary>暗号文ストレージ キー機能を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.HardwareProtection">
+      <summary>ストレージ キーにハードウェア保護があります。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.None">
+      <summary>ストレージ キーには、この列挙体で定義されたどの機能もありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.UnlockPrompt">
+      <summary>ストレージ キーは、暗号操作で使用される前にジェスチャを必要とします。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics">
+      <summary>このクラスには、ストレージ キーの特性が含まれています。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.#ctor">
+      <summary>SmartCardCryptogramStorageKeyCharacteristics の新しいインスタンスを作成します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Algorithm">
+      <summary>アルゴリズムを取得します。</summary>
+      <returns>アルゴリズム。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Capabilities">
+      <summary>機能を取得します。</summary>
+      <returns>機能。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.DateCreated">
+      <summary>このストレージ キーが作成された日付を取得します。</summary>
+      <returns>このストレージ キーが作成された日付。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.StorageKeyName">
+      <summary>ストレージ キー名を取得します。</summary>
+      <returns>ストレージ キー名。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo">
+      <summary>アプリケーションがサービスにキー情報を登録し、認定できるように、ストレージ キーに関する情報が格納されています。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Attestation">
+      <summary>証明を取得します。</summary>
+      <returns>証明を含んだバッファー。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationCertificateChain">
+      <summary>証明の証明書チェーンを取得します。</summary>
+      <returns>証明の証明書チェーンを含んだバッファー。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationStatus">
+      <summary>証明ステータスを取得します。</summary>
+      <returns>証明ステータス。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Capabilities">
+      <summary>暗号文ストレージ キー機能を取得します。</summary>
+      <returns>暗号文ストレージ キー機能。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationalRequirements">
+      <summary>ストレージ キーの運用要件を取得します。</summary>
+      <returns>運用要件。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationStatus">
+      <summary>操作状態を取得します。</summary>
+      <returns>操作状態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKey">
+      <summary>公開キーを取得します。</summary>
+      <returns>RequestCryptogramMaterialStorageKeyInfoAsync を呼び出したときに指定された形式の公開キーを含むバッファー。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKeyBlobType">
+      <summary>公開キー オブジェクトの種類を取得します。 この値は、RequestCryptogramMaterialStorageKeyInfoAsync メソッドで要求された公開キー BLOB の種類を表します。</summary>
+      <returns>公開キー オブジェクトの種類。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus">
+      <summary>キーの証明状態を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.NoAttestation">
+      <summary>キーに証明はありません。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithoutTpm">
+      <summary>キーは、TPM のないデバイス上のソフトウェア キーです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithTpm">
+      <summary>キーは、TPM のあるデバイス上のソフトウェア キーです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyUnknownAttestationStatus">
+      <summary>キーをサポートする TPM の証言状態が不明です。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithAttestation">
+      <summary>キーは、証言のある TPM キーです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithLongTermAttestationFailure">
+      <summary>キーは、長期間証明が失敗した TPM キーです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithoutAttestationCapability">
+      <summary>キーは、証明を提供する機能を持っていないデバイスの TPM キーです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithTemporaryAttestationFailure">
+      <summary>キーは、一時的に証明が失敗した TPM キーです。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationCategory">
+      <summary>エミュレートできるスマート カードの有効なカテゴリを定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Other">
+      <summary>ロイヤルティ カードやセキュリティ バッジなどの支払用カード以外のスマート カードを指定します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Payment">
+      <summary>支払用カードを指定します。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationType">
+      <summary>デバイスがスマート カードをエミュレートする機構を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.EmbeddedSE">
+      <summary>デバイスは、埋め込み SE リーダーにアプリケーション プロトコル データ ユニット (APDU) コマンドを転送することにより、スマート カードをエミュレートします。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Host">
+      <summary>デバイスは、応答を返すホスト アプリケーションにアプリケーション プロトコル データ ユニット (APDU) コマンドを転送することにより、スマート カードをエミュレートします。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Uicc">
+      <summary>デバイスは、物理 UICC カードに アプリケーション プロトコル データ ユニット (APDU) コマンドを直接転送して、スマート カードをエミュレートします。 UICC カードは、一般に SIM カードよりも注目されています。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulator">
+      <summary>スマート カード エミュレーター デバイスを表します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.EnablementPolicy">
+      <summary>ユーザーが設定した現在のカード エミュレーション ポリシーを取得します。</summary>
+      <returns>電話設定でユーザーが設定した現在のカード エミュレーション ポリシー。 このプロパティは、アプリからは読み取り専用です。モバイル オペレーターが許可する場合は、自分の電話の設定でカードのエミュレーション ポリシーを変更するようにユーザーに指示する必要があります。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.MaxAppletIdGroupRegistrations">
+      <summary>使用できるアプレット ID のグループの登録の最大数を取得します。</summary>
+      <returns>使用できるアプレット ID のグループの登録の最大数。</returns>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ApduReceived">
+      <summary>アプリケーション プロトコル データ ユニット (APDU) を NFC コントローラーが受け取ったときに発生します。</summary>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ConnectionDeactivated">
+      <summary>デバイスとの接続が物理的に切断されているとき、または NFC リーダーが他のアプリへの接続を要求するときに発生します。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetAppletIdGroupRegistrationsAsync">
+      <summary>このスマートカード用に登録されたアプレット識別子のグループを非同期的に取得します。</summary>
+      <returns>このスマート カード用に登録されたアプレット識別子のグループ。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetDefaultAsync">
+      <summary>既定のスマート カード エミュレーター デバイスを表す SmartCardEmulator オブジェクトを返します。</summary>
+      <returns>非同期操作の完了後、既定のスマート カード エミュレーターを返します。またはスマート カード エミュレーターがない場合は null。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsHostCardEmulationSupported">
+      <summary>ホスト カード エミュレーションがこのデバイスでサポートされているかどうかを示すブール値を取得します。</summary>
+      <returns>ホスト カード エミュレーションがこのデバイスでサポートされている場合は true。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsSupported">
+      <summary>SmartCardEmulator がサポートされているかどうかを返します。</summary>
+      <returns>SmartCardEmulator がサポートされている場合は true。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.RegisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroup)">
+      <summary>アプレット ID のグループを非同期的に登録します。</summary>
+      <param name="appletIdGroup">登録するアプレット ID のグループ。</param>
+      <returns>登録済みのアプレット ID のグループ。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.Start">
+      <summary>スマート カード エミュレーターを開始します。 このメソッドは、バックグラウンド タスクから呼び出される必要があります。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.UnregisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration)">
+      <summary>前に登録済みのアプレット ID のグループを非同期的に登録解除します。</summary>
+      <param name="registration">前に登録済みのアプレット ID のグループ。</param>
+      <returns>非同期操作を制御するために使用される IAsyncAction オブジェクトを返します。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs">
+      <summary>ApduReceived イベントのデータを提供します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.AutomaticResponseStatus">
+      <summary>自動応答が既に正常に送信された (**Success**)、試行されたが失敗した (**UnknownError**)、またはどの自動レスポンダー ルールとも一致しなかった (**None**) ことを示す SmartCardAutomaticResponseStatus オブジェクトを取得します。</summary>
+      <returns>自動応答の状態を表すオブジェクト。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.CommandApdu">
+      <summary>NFC リーダーから送信されるアプリケーション プロトコル データ ユニット (APDU) コマンドを表します。</summary>
+      <returns>NFC リーダーから送信されるアプリケーション プロトコル データ ユニット (APDU) コマンド。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.ConnectionProperties">
+      <summary>スマート カード エミュレーターの接続プロパティを取得します。</summary>
+      <returns>スマート カード エミュレーターの接続プロパティ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.State">
+      <summary>状態を取得します。</summary>
+      <returns>状態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer)">
+      <summary>APDU に応答します。</summary>
+      <param name="responseApdu">応答を含んだバッファー。</param>
+      <returns>操作が指示を完了したらブール値を返す非同期操作を返します。 操作が正常に終了した場合、ブール値は true、それ以外の場合は false になります。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.IReference{System.UInt32})">
+      <summary>APDU に応答します。</summary>
+      <param name="responseApdu">応答を含んだバッファー。</param>
+      <param name="nextState">次の状態を格納している参照。</param>
+      <returns>操作の完了時にブール値を返す非同期操作を返します。 ブール値は、操作が正常に終了した場合は true、それ以外の場合は false になります。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>配置手順の指示に従って送信メッセージに暗号文を配置して、APDU への応答を試みます。</summary>
+      <param name="responseTemplate">テンプレート応答を格納しているバッファー。</param>
+      <param name="cryptogramPlacementSteps">暗号文の手順を格納しているコレクション。</param>
+      <returns>操作状態ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep},Windows.Foundation.IReference{System.UInt32})">
+      <summary>操作状態ありで完了する非同期操作を返します。</summary>
+      <param name="responseTemplate">テンプレート応答を格納しているバッファー。</param>
+      <param name="cryptogramPlacementSteps">暗号文の手順を格納しているコレクション。</param>
+      <param name="nextState">次の状態を格納している参照。</param>
+      <returns>操作状態ありで完了する非同期操作を返します。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs">
+      <summary>ConnectionDeactivated イベントのデータを指定します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.ConnectionProperties">
+      <summary>スマート カード エミュレーターの接続プロパティを取得します。</summary>
+      <returns>スマート カード エミュレーターの接続プロパティ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.Reason">
+      <summary>NFC リーダーへのスマート カードの接続が非アクティブ化された理由を取得します。</summary>
+      <returns>NFC リーダーへのスマート カードの接続が非アクティブ化された理由。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason">
+      <summary>NFC リーダーへのスマート カードの接続が非アクティブ化される可能性がある理由を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionLost">
+      <summary>リーダーへ物理的に接続されなくなりました。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionRedirected">
+      <summary>別のアプリケーションに解決される別のアプリケーションを選択するリーダー端末のため、接続は別のアプリケーションにダイレクトされます。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties">
+      <summary>NFC リーダーへのスマート カード エミュレーターの接続に関する情報を提供します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Id">
+      <summary>接続の識別子を取得します。</summary>
+      <returns>接続の識別子。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Source">
+      <summary>NFC リーダーまたはその他のどちらへ接続されているかを示す列挙値を取得します。</summary>
+      <returns>NFC リーダーまたはその他のどちらへ接続されているかを示す列挙値。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource">
+      <summary>スマート カードの接続元の有効な型を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.NfcReader">
+      <summary>NFC リーダーの接続を指定します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.Unknown">
+      <summary>NFC リーダー以外への接続を指定します。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy">
+      <summary>電話設定でユーザーが設定した現在のカード エミュレーション ポリシーを表します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Always">
+      <summary>カード エミュレーションは常にオンです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Never">
+      <summary>カード エミュレーションは無効です。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenOn">
+      <summary>カード エミュレーションは電話画面がオンの場合にのみオンです。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenUnlocked">
+      <summary>カード エミュレーションは電話画面がロック解除されている場合にのみオンです。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior">
+      <summary>ロック解除プロンプト動作を定義します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.AllowUnlockPrompt">
+      <summary>ロック解除プロンプトを必要に応じて許可します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.PreventUnlockPrompt">
+      <summary>ロック解除プロンプトを禁止します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.RequireUnlockPrompt">
+      <summary>ロック解除プロンプトを要求します。</summary>
+    </member>
+  </members>
+</doc>

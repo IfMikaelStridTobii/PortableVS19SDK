@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>Représente un événement déclenché par une carte à puce.</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>Initialise une nouvelle instance d'un SmartCardTrigger</summary>
+      <param name="triggerType">Type de déclencheur.</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>Obtient le type de déclencheur d'un déclencheur de carte à puce.</summary>
+      <returns>Un SmartCardTriggerType.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>Spécifie comment une application de carte à puce doit être activée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>Exécute l'application au-dessus de l'écran de verrouillage.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>Comportement de lancement par défaut.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>Fournit des détails concernant un déclencheur de carte à puce.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>Obtient l'émulateur de carte à puce qui a causé le déclenchement de l'événement.</summary>
+      <returns>Émulateur de carte à puce qui a causé le déclenchement de l'événement.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>Obtient la carte à puce.</summary>
+      <returns>Carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>Obtient l'identificateur d'applet de la source du déclencheur de carte à puce.</summary>
+      <returns>Identificateur d'applet.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>Obtient les données du déclencheur de carte à puce.</summary>
+      <returns>Données du déclencheur de carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>Obtient le type du déclencheur de carte à puce.</summary>
+      <returns>Type du déclencheur de carte à puce.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>Tente de façon asynchrone de lancer l'application de carte à puce actuelle, en passant les arguments spécifiés.</summary>
+      <param name="arguments">Chaîne spécifiant les arguments à passer à l'application de carte à puce au cours du lancement.</param>
+      <returns>Valeur booléenne indiquant si l'application s'est lancée avec succès.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>Tente de façon asynchrone de lancer l'application de carte à puce actuelle à l'aide du comportement spécifié, en passant les arguments spécifiés.</summary>
+      <param name="arguments">Chaîne spécifiant les arguments à passer à l'application de carte à puce au cours du lancement.</param>
+      <param name="behavior">Comportement à utiliser lors du lancement de l'application.</param>
+      <returns>Valeur booléenne indiquant si l'application s'est lancée avec succès.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>Représente les types de déclencheur de carte à puce valides.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>Événement modifié d'inscription de groupe d'identificateurs d'applet.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>Événement activé par une application hôte.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>Événement d'entrée de champ.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>Événement de sortie de champ.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>Événement de transaction.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>Un événement de carte de lecteur a été ajouté.</summary>
+    </member>
+  </members>
+</doc>

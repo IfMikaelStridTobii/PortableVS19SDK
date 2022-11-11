@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>Rappresenta un evento generato da una smart card.</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>Inizializza una nuova istanza di una SmartCardTrigger</summary>
+      <param name="triggerType">Tipo di trigger.</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>Ottiene il tipo di trigger di una smart card.</summary>
+      <returns>Oggetto SmartCardTriggerType.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>Specifica come deve essere avviata un'app di smart card.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>Avvia l'app al di sopra della schermata di blocco.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>Comportamento predefinito di avvio.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>Fornisce dettagli su un trigger di smart card.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>Ottiene l'emulatore di smart card che ha generato l'attivazione dell'evento.</summary>
+      <returns>Emulatore di smart card che ha generato l'attivazione dell'evento.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>Ottiene la smart card.</summary>
+      <returns>La smart card.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>Ottiene l'ID di applet dell'origine del trigger di smart card.</summary>
+      <returns>ID dell'applet.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>Ottiene i dati del trigger di smart card.</summary>
+      <returns>Dati del trigger di smart card.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>Ottiene il tipo di trigger di smart card.</summary>
+      <returns>Tipo di trigger di smart card.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>In modo asincrono tenta di avviare l'app corrente di smart card, passando gli argomenti specificati.</summary>
+      <param name="arguments">Stringa che specifica gli argomenti da passare all'app di smart card all'avvio.</param>
+      <returns>Valore booleano che indica se l'app è stata avviata.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>In modo asincrono tenta di avviare l'app corrente di smart card utilizzando il comportamento specificato, passando gli argomenti specificati.</summary>
+      <param name="arguments">Stringa che specifica gli argomenti da passare all'app di smart card all'avvio.</param>
+      <param name="behavior">Comportamento da utilizzare quando viene avviata l'app.</param>
+      <returns>Valore booleano che indica se l'app è stata avviata.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>Rappresenta i tipi di trigger di smart card validi.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>Evento di registrazione del gruppo di ID di applet modificato.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>Evento attivato dell'app host.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>Evento di entrata del campo.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>Un evento di uscita del campo.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>Una transazione.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>È stato aggiunto un evento a una scheda del lettore.</summary>
+    </member>
+  </members>
+</doc>

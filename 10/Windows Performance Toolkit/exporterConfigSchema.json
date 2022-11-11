@@ -1,0 +1,149 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+        "InputFileNames": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Key": {
+                        "type": "string"
+                    },
+                    "Value": {
+                        "type": "string"
+                    }
+                },
+                "required": ["Key", "Value"]
+            }
+        },
+        "OutputOptions": {
+            "type": "object",
+            "properties": {
+                "Folder": {
+                    "type": "string"
+                },
+                "Format": {
+                    "type": "string",
+                    "enum": ["CSV", "XML"]
+                },
+                "Delimiter": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1
+                },
+                "Prefix": {
+                    "type": "string"
+                },
+            }
+        },
+        "Profiles": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "Path": {
+                            "type": "string"
+                        },
+                        "InputFiles": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "Name": {
+                                            "type": "string"
+                                        },
+                                        "Slot": {
+                                            "type": "number"
+                                        },
+                                        "TimeRange": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Start": {
+                                                    "type": "string"
+                                                },
+                                                "End": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["Start", "End"]
+                                        },
+                                        "Region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Name": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["Name"]
+                                        },
+                                        "Interval": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Name": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["Name"]
+                                        },
+                                        "Marks": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Start": {
+                                                    "type": "string"
+                                                },
+                                                "End": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["Start", "End"]
+                                        },
+                                        "MetadataTables": {
+                                            "type": "array",
+                                            "items": [
+                                              { "type": "string" }
+                                            ]
+                                        },
+                                        "Processor": {
+                                            "type": "string"
+                                        },
+                                        "ProcessorArguments": {
+                                            "type": "array",
+                                            "items": [
+                                            
+                                            ]
+                                        },
+                                    },
+                                    "required": ["Name"],
+                                    "dependencies": {
+                                        "ProcessorArguments": ["Processor"]
+                                    },
+                                    "oneOf": [
+                                        { "required": [ "Marks" ] },
+                                        { "required": [ "Interval" ] },
+                                        { "required": [ "Region" ] },
+                                        { "required": [ "TimeRange" ] },
+                                        { "not": 
+                                            {
+                                                "anyOf": [
+                                                    { "required": [ "Marks" ] },
+                                                    { "required": [ "Interval" ] },
+                                                    { "required": [ "Region" ] },
+                                                    { "required": [ "TimeRange" ] },
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "required": ["Path", "InputFiles"]
+                }
+            ]
+        },
+    },
+    "required": ["Profiles"]
+}

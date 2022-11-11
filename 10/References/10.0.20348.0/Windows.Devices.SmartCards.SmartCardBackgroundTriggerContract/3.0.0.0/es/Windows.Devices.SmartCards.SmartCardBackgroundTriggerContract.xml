@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>Representa un evento activado por una tarjeta inteligente.</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>Inicializa una nueva instancia de SmartCardTrigger</summary>
+      <param name="triggerType">Tipo de desencadenador.</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>Obtiene el tipo de desencadenador de un desencadenador de tarjeta inteligente.</summary>
+      <returns>Un SmartCardTriggerType.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>Especifica cómo se debe iniciar una aplicación de tarjeta inteligente.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>Inicia la aplicación en la pantalla de bloqueo.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>Comportamiento predeterminado de inicio.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>Proporciona información detallada sobre un desencadenador de tarjeta inteligente.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>Obtiene el emulador de tarjeta inteligente que provocó que se desencadenara el evento.</summary>
+      <returns>Emulador de tarjeta inteligente que provocó que se desencadenara el evento.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>Obtiene la tarjeta inteligente.</summary>
+      <returns>Tarjeta inteligente.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>Obtiene el identificador de applet del origen del desencadenador de la tarjeta inteligente.</summary>
+      <returns>Identificador de applet.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>Obtiene los datos de desencadenador de la tarjeta inteligente.</summary>
+      <returns>Datos de desencadenador de la tarjeta inteligente.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>Obtiene el tipo de desencadenador de la tarjeta inteligente.</summary>
+      <returns>Tipo de desencadenador de la tarjeta inteligente.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>Intenta de forma asincrónica iniciar el applet de tarjeta inteligente actual, pasando los argumentos especificados.</summary>
+      <param name="arguments">Cadena que especifica los argumentos que se pasan a la aplicación de tarjeta inteligente en el inicio.</param>
+      <returns>Valor booleano que indica si la aplicación se inició correctamente.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>Intenta de forma asincrónica iniciar la aplicación de tarjeta inteligente actual usando el comportamiento indicado, pasando los argumentos especificados.</summary>
+      <param name="arguments">Cadena que especifica los argumentos que se pasan a la aplicación de tarjeta inteligente en el inicio.</param>
+      <param name="behavior">Comportamiento que se va a usar cuando se inicie la aplicación.</param>
+      <returns>Valor booleano que indica si la aplicación se inició correctamente.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>Representa los tipos de desencadenador válidos de la tarjeta inteligente.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>Evento de cambio de registro de grupo de identificadores de applet.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>Evento activado por la aplicación host.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>Evento de entrada de campo.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>Un evento de salida de campo.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>Un evento de transacción.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>Una tarjeta de lectura fue un evento agregado.</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,1376 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+
+<WindowsPerformanceRecorder
+    Author="Microsoft Corporation"
+    Comments="Replaces Normal, Verbose, Longhaul, and Present levels of log.cmd and circularlog.cmd Xperf scripts to collect traces for GPUView
+              All buffer sizes are currently set to 1024KB with 240 buffers"
+    Company="Microsoft Corporation"
+    Copyright="Microsoft Corporation"
+    Team="Graphics"
+    Version="1.0"
+    >
+  
+  <Profiles>
+    <!--=========== COLLECTOR DEFINITIONS ===========-->
+    <!--Equivalent to TRACE_NT_PROVIDER-->
+    <SystemCollector
+        Id="SystemCollector"
+        Name="NT Kernel Logger"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </SystemCollector>
+
+    <!--Equivalent to SCHLOG -->
+    <EventCollector
+        Id="EventCollector_SchLog"
+        Name="Scheduling log collector for File Logging"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <!--Equivalent to TRACE_CS_PROVIDERS
+        For file logging mode -->
+    <EventCollector
+        Id="EventCollector_CaptureState_OnStart"
+        Name="Capture State Event Collector for File Logging"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <!--Equivalent to TRACE_CS_PROVIDERS
+        For circular logging mode -->
+    <EventCollector
+        Id="EventCollector_CaptureState_OnSave"
+        Name="Capture State Event Collector for Circular Logging"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <!--Equivalent to TRACE_NOCS_PROVIDERS-->
+    <EventCollector
+        Id="EventCollector_NoCaptureState"
+        Name="No Capture State Event Collector"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_NoCaptureState_Normal"
+        Base="EventCollector_NoCaptureState"
+        Name="No Capture State Event Collector - Normal"
+        >
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_NoCaptureState_Verbose"
+        Base="EventCollector_NoCaptureState"
+        Name="No Capture State Event Collector - Verbose"
+        >
+    </EventCollector>
+    
+    <!--Longhaul-->
+    <EventCollector
+        Id="EventCollector_Longhaul"
+        Name="Longhaul Event Collector"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_TrackedWorkload_CaptureState_Light"
+        Name="Light Capture State Event Collector for Tracked Workloads"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_TrackedWorkload_NoCaptureState_Light"
+        Name="Light No Capture State Event Collector for Tracked Workloads"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_TrackedWorkload_CaptureState_Verbose"
+        Name="Verbose Capture State Event Collector for Tracked Workloads"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <EventCollector
+        Id="EventCollector_TrackedWorkload_NoCaptureState_Verbose"
+        Name="Verbose No Capture State Event Collector for Tracked Workloads"
+        >
+      <!--Adjust buffer size and quantity-->
+      <BufferSize Value="1024"/>
+      <Buffers Value="240"/>
+    </EventCollector>
+
+    <!--=========== PROVIDER DEFINITIONS ===========-->
+    <SystemProvider
+      Id="SystemProvider_NormalVerbose">
+      <Keywords>
+        <Keyword Value="Loader"/>
+        <Keyword Value="ProcessThread"/>
+        <Keyword Value="CSwitch"/>
+        <Keyword Value="ReadyThread"/>
+        <Keyword Value="Power"/>
+        <Keyword Value="DiskIO"/>
+        <Keyword Value="HardFaults"/>
+        <Keyword Value="SampledProfile"/>
+        <Keyword Value="MemoryInfo"/>
+        <Keyword Value="DPC"/>
+        <Keyword Value="Interrupt"/>
+      </Keywords>
+      <Stacks>
+        <Stack
+          Value="CSwitch"/>
+        <Stack
+          Value="PagefaultHard"/>
+        <Stack
+          Value="SampledProfile"/>
+      </Stacks>
+    </SystemProvider>
+    
+    <SystemProvider
+      Id="SystemProvider_Light">
+      <Keywords>
+        <Keyword Value="Loader"/>
+        <Keyword Value="ProcessThread"/>
+        <Keyword Value="CSwitch"/>
+        <Keyword Value="ReadyThread"/>
+        <Keyword Value="Power"/>
+        <Keyword Value="DiskIO"/>
+        <Keyword Value="HardFaults"/>
+        <Keyword Value="DPC"/>
+        <Keyword Value="Interrupt"/>
+      </Keywords>
+    </SystemProvider>
+    
+    <SystemProvider
+      Id="SystemProvider_Longhaul">
+      <Keywords>
+        <Keyword Value="Loader"/>
+        <Keyword Value="ProcessThread"/>
+        <Keyword Value="Power"/>
+      </Keywords>
+    </SystemProvider>
+
+    <SystemProvider
+      Id="SystemProvider_Present">
+      <Keywords>
+        <Keyword Value="Loader"/>
+        <Keyword Value="ProcessThread"/>
+        <Keyword Value="CSwitch"/>
+        <Keyword Value="ReadyThread"/>
+        <Keyword Value="Power"/>
+      </Keywords>
+    </SystemProvider>
+
+    <!--SCHLOG: This provider cannot be combined with TRACE_DXC_ providers because
+    DXGKRNL handles its capture in a special step with only 0x04000000 flag set-->
+    <EventProvider
+        Id="SCHLOG"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x04000000"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0x04000000"/>
+      </CaptureStateOnStart>
+      <CaptureStateOnSave>
+        <Keyword Value="0x04000000"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS: DXC_NORMAL-->
+    <EventProvider
+        Id="TRACE_DXC_NORMAL"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x100236"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS: DXC_TW_VERBOSE-->
+    <EventProvider
+        Id="TRACE_DXC_TW_VERBOSE"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x20100236"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: UMD -->
+    <EventProvider
+        Id="TRACE_UMD_CaptureStateOnStart"
+        Name="a688ee40-d8d9-4736-b6f9-6b74935ba3b1"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_UMD_CaptureStateOnSave"
+        Name="a688ee40-d8d9-4736-b6f9-6b74935ba3b1"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: DXGI-->
+    <EventProvider
+        Id="TRACE_DXGI_CaptureStateOnStart"
+        Name="CA11C036-0102-4A2D-A6AD-F03CFED5D3C9"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_DXGI_CaptureStateOnSave"
+        Name="CA11C036-0102-4A2D-A6AD-F03CFED5D3C9"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+    
+    <!--TRACE_DXGI_PRESENT-->
+    <EventProvider
+        Id="TRACE_DXGI_PRESENT_CaptureStateOnStart"
+        Name="CA11C036-0102-4A2D-A6AD-F03CFED5D3C9"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_DXGI_PRESENT_CaptureStateOnSave"
+        Name="CA11C036-0102-4A2D-A6AD-F03CFED5D3C9"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3D11On12-->
+    <EventProvider
+        Id="TRACE_D3D11On12_CaptureStateOnStart"
+        Name="a0ab5aac-e0a4-4f10-83c6-31939c604fd9"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D11On12_CaptureStateOnSave"
+        Name="a0ab5aac-e0a4-4f10-83c6-31939c604fd9"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3D9On12-->
+    <EventProvider
+        Id="TRACE_D3D9On12_CaptureStateOnStart"
+        Name="c0c418c5-1f3c-4ee0-93a2-a0bb8f417f9a"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D9On12_CaptureStateOnSave"
+        Name="c0c418c5-1f3c-4ee0-93a2-a0bb8f417f9a"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3D12-->
+    <EventProvider
+        Id="TRACE_D3D12_CaptureStateOnStart"
+        Name="5d8087dd-3a9b-4f56-90df-49196cdc4f11"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D12_CaptureStateOnSave"
+        Name="5d8087dd-3a9b-4f56-90df-49196cdc4f11"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3D11-->
+    <EventProvider
+        Id="TRACE_D3D11_CaptureStateOnStart"
+        Name="db6f6ddb-ac77-4e88-8253-819df9bbf140"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D11_CaptureStateOnSave"
+        Name="db6f6ddb-ac77-4e88-8253-819df9bbf140"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+    
+    <!--TRACE_D3D11_PRESENT-->
+    <EventProvider
+        Id="TRACE_D3D11_PRESENT_CaptureStateOnStart"
+        Name="db6f6ddb-ac77-4e88-8253-819df9bbf140"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D11_PRESENT_CaptureStateOnSave"
+        Name="db6f6ddb-ac77-4e88-8253-819df9bbf140"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xffffffffffffffff"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3D10LEVEL9-->
+    <!--Missing logging level in xperf params; default for WPR is 0 (ETL = 0xFFFFFFFFFFFFFFFF)-->
+    <EventProvider
+        Id="TRACE_D3D10LEVEL9_CaptureStateOnStart"
+        Name="7E7D3382-023C-43cb-95D2-6F0CA6D70381"
+        >
+      <Keywords>
+        <Keyword Value="0x1"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0x1"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D10LEVEL9_CaptureStateOnSave"
+        Name="7E7D3382-023C-43cb-95D2-6F0CA6D70381"
+        >
+      <Keywords>
+        <Keyword Value="0x1"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0x1"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+    
+    <!--TRACE_D3D9_PRESENT-->
+    <EventProvider
+        Id="TRACE_D3D9_PRESENT_CaptureStateOnStart"
+        Name="783ACA0A-790E-4d7f-8451-AA850511C6B9"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3D9_PRESENT_CaptureStateOnSave"
+        Name="783ACA0A-790E-4d7f-8451-AA850511C6B9"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS, TRACE_CS_STATE: D3DSCACHE-->
+    <EventProvider
+        Id="TRACE_D3DSCACHE_CaptureStateOnStart"
+        Name="2d4ebca6-ea64-453f-a292-ae2ea0ee513b"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_D3DSCACHE_CaptureStateOnSave"
+        Name="2d4ebca6-ea64-453f-a292-ae2ea0ee513b"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xf"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0xf"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS: MIRAGE-->
+    <EventProvider
+        Id="TRACE_MIRAGE"
+        Name="356E1338-04AD-420E-8B8A-A2EB678541CF"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xf00000"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_CS_PROVIDERS: DHD-->
+    <EventProvider
+        Id="TRACE_DHD"
+        Name="19d9d739-da0a-41a0-b97f-24ed27abc9fb"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_CS_STATE: DXC_ALL
+        CaptureStateOnStart-->
+    <EventProvider
+        Id="TRACE_DXC_ALL_CaptureStateOnStart"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        Stack="true"
+        NonPagedMemory="true"
+        CaptureStateOnly="true"
+        >
+      <CaptureStateOnStart>
+        <Keyword Value="0x2090BFFF"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+
+    <!--TRACE_CS_STATE: DXC_ALL
+        CaptureStateOnSave-->
+    <EventProvider
+        Id="TRACE_DXC_ALL_CaptureStateOnSave"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        Stack="true"
+        NonPagedMemory="true"
+        CaptureStateOnly="true"
+        >
+      <CaptureStateOnSave>
+        <Keyword Value="0x90BFFF"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DX:0x2F-->
+    <EventProvider
+        Id="TRACE_DX-0x2F"
+        Name="DX"
+        >
+      <Keywords>
+        <Keyword Value="0x2F"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: XAML:4-->
+    <EventProvider
+        Id="TRACE_XAML-4"
+        Name="531A35AB-63CE-4BCF-AA98-F88C7A89E455"
+        Level="4"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: WARP:1-->
+    <EventProvider
+        Id="TRACE_WARP-1"
+        Name="ee685ec4-8270-4b08-9e4e-8b356f48f92f"
+        Level="1"
+        >
+      <Keywords>
+        <Keyword Value="0"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DXC_STACKS-->
+    <EventProvider
+        Id="TRACE_DXC_STACKS"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        Stack="true"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0xa08041"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: MF-->
+    <!--First GUID not included as it has no keyword, and a keyword is required:
+        %TRACE_MF% = f404b94e-27e0-4384-bfe8-1d8d390b0aa3+362007f7-6e50-4044-9082-dfa078c63a73:0x000000000000ffff:0x5-->
+    <EventProvider
+        Id="TRACE_MF"
+        Name="362007f7-6e50-4044-9082-dfa078c63a73"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0x000000000000ffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: WME-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_WME% = 8f2048e0-f260-4f57-a8d1-932376291682-->
+
+    <!--TRACE_NOCS_PROVIDERS: SCHEDULEGUID-->
+    <EventProvider
+        Id="TRACE_SCHEDULEGUID"
+        Name="8cc44e31-7f28-4f45-9938-4810ff517464"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: SC-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_SC% = 30336ed4-e327-447c-9de0-51b652c86108-->
+
+    <!--TRACE_NOCS_PROVIDERS: WIN32K-->
+    <EventProvider
+        Id="TRACE_WIN32K"
+        Name="8c416c79-d49b-4f01-a467-e56d3aa8234c"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DWM-->
+    <EventProvider
+        Id="TRACE_DWM"
+        Name="a42c77db-874f-422e-9b44-6d89fe2bd3e5"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0x000000007fffffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DWM2-->
+    <EventProvider
+        Id="TRACE_DWM2"
+        Name="8c9dd1ad-e6e5-4b07-b455-684a9d879900"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xFFFF"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DWM3-->
+    <EventProvider
+        Id="TRACE_DWM3"
+        Name="9e9bba3c-2e38-40cb-99f4-9e8281425164"
+        Level="6"
+        >
+      <Keywords>
+        <Keyword Value="0xFFFF"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: TESTFRAMEWORK-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_TESTFRAMEWORK% = 31293f4f-f7bb-487d-8b3b-f537b827352f-->
+
+
+    <!--TRACE_NOCS_PROVIDERS: TEST-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_TEST% = 42C4E0C1-0D92-46f0-842C-1E791FA78D52-->
+
+    <!--TRACE_NOCS_PROVIDERS: DSHOW-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_DSHOW% = 28cf047a-2437-4b24-b653-b9446a419a69-->
+
+    <!--TRACE_NOCS_PROVIDERS: AE-->
+    <EventProvider
+        Id="TRACE_AE"
+        Name="a6a00efd-21f2-4a99-807e-9b3bf1d90285"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0x000000000000ffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DXVA2-->
+    <EventProvider
+        Id="TRACE_DXVA2"
+        Name="a0386e75-f70c-464c-a9ce-33c44e091623"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DXGIDEBUG_NORMAL-->
+    <EventProvider
+        Id="TRACE_DXGIDEBUG_NORMAL"
+        Name="F1FF64EF-FAF3-5699-8E51-F6EC2FBD97D1"
+        Level="4"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: DX-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_DX% = DX-->
+        
+    <!--TRACE_NOCS_PROVIDERS: XAML:5-->
+    <EventProvider
+        Id="TRACE_XAML-5"
+        Name="531A35AB-63CE-4BCF-AA98-F88C7A89E455"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: WARP:0x12-->
+    <!--Not included as 0x12 is not a valid level:
+        %TRACE_WARP%:0x12  = ee685ec4-8270-4b08-9e4e-8b356f48f92f:0:0x12-->
+    
+    <!--TRACE_NOCS_PROVIDERS: D2DSCENARIOS-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_D2DSCENARIOS% = 712909c0-6e57-4121-b639-87c8bf9004e0-->
+    
+    <!--TRACE_NOCS_PROVIDERS: D2D-->
+    <EventProvider
+        Id="TRACE_D2D"
+        Name="dcb453db-c652-48be-a0f8-a64459d5162e"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0"/>
+      </Keywords>
+    </EventProvider>
+      
+    <!--TRACE_NOCS_PROVIDERS: MMCSS-->
+    <EventProvider
+        Id="TRACE_MMCSS"
+        Name="f8f10121-b617-4a56-868b-9df1b27fe32c"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: WMDRM-->
+    <EventProvider
+        Id="TRACE_WMDRM"
+        Name="6e03dd26-581b-4ec5-8f22-601a4de5f022"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: WMP-->
+    <EventProvider
+        Id="TRACE_WMP"
+        Name="681069c4-b785-466a-bc63-4aa616644b68"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: DVD-->
+    <EventProvider
+        Id="TRACE_DVD"
+        Name="75d4a1bb-7cc6-44b1-906d-d5e05be6d060"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: HME-->
+    <EventProvider
+        Id="TRACE_HME"
+        Name="63770680-05F1-47E0-928A-9ACFDCF52147"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: HDDVD-->
+    <EventProvider
+        Id="TRACE_HDDVD"
+        Name="779d8cdc-666b-4bf4-a367-9df89d6901e8"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: DWMAPIGUID-->
+    <!--Not included as it has no keyword, and a keyword is required:
+        %TRACE_DWMAPIGUID% = 71dd85bc-d474-4974-b0f6-93ffc5bfbd04::6-->
+    
+    <!--TRACE_NOCS_PROVIDERS: CODEC-->
+    <EventProvider
+        Id="TRACE_CODEC"
+        Name="ea6d6e3b-7014-4ab1-85db-4a50cda32a82"
+        Level="5"
+        >
+      <Keywords>
+        <Keyword Value="0xffff"/>
+      </Keywords>
+    </EventProvider>
+    
+    <!--TRACE_NOCS_PROVIDERS: DXGIDEBUG_VERBOSE-->
+    <EventProvider
+        Id="TRACE_DXGIDEBUG_VERBOSE"
+        Name="F1FF64EF-FAF3-5699-8E51-F6EC2FBD97D1"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_DXC_MIN-->
+    <EventProvider
+        Id="TRACE_DXC_MIN"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x800"/>
+      </Keywords>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_DXC_MIN_CaptureStateOnStart"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x800"/>
+      </Keywords>
+      <CaptureStateOnStart>
+        <Keyword Value="0x800"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+    
+    <EventProvider
+        Id="TRACE_DXC_MIN_CaptureStateOnSave"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x800"/>
+      </Keywords>
+      <CaptureStateOnSave>
+        <Keyword Value="0x800"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_CS_STATE: TRACE_DXC_ALL_PRESENT
+        CaptureStateonStart-->
+    <EventProvider
+        Id="TRACE_DXC_ALL_PRESENT_CaptureStateOnStart"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        CaptureStateOnly="true"
+        >
+      <CaptureStateOnStart>
+        <Keyword Value="0x10BFFF"/>
+      </CaptureStateOnStart>
+    </EventProvider>
+
+    <EventProvider
+        Id="TRACE_DXC_ALL_PRESENT_CaptureStateOnSave"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        CaptureStateOnly="true"
+        >
+      <CaptureStateOnSave>
+        <Keyword Value="0x10BFFF"/>
+      </CaptureStateOnSave>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: TRACE_DXC_PRESENT-->
+    <EventProvider
+        Id="TRACE_DXC_PRESENT"
+        Name="802ec45a-1e99-4b83-9920-87c98277ba9d"
+        Level="5"
+        NonPagedMemory="true"
+        >
+      <Keywords>
+        <Keyword Value="0x208041"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: TRACE_DX:0x9-->
+    <EventProvider
+        Id="TRACE_DX-0x9"
+        Name="DX"
+        >
+      <Keywords>
+        <Keyword Value="0x9"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--TRACE_NOCS_PROVIDERS: DXCORE-->
+    <EventProvider
+        Id="TRACE_DXCORE"
+        Name="ab604427-d048-4139-8494-1246c81f09d5"
+        Level="6"
+        Stack="true"
+        >
+      <Keywords>
+        <Keyword Value="0xffffffffffffffff"/>
+      </Keywords>
+    </EventProvider>
+
+    <!--=========== PROFILE DEFINITIONS ===========-->
+    
+    <!--BASE profile for the union of all Normal ("light") and Verbose level collectors
+        Note that Normal and Verbose share the same system and capture-state providers-->
+    <Profile
+        Description="GPUView traces - Normal/Verbose [base profile]"
+        DetailLevel="Light"
+        Id="GPUView-NormalVerbose-Base.Light.File"
+        LoggingMode="File"
+        Name="GPUView-NormalVerbose-Base"
+        >
+      <Collectors>
+        <!--System-->
+        <SystemCollectorId Value="SystemCollector">
+          <SystemProviderId Value="SystemProvider_NormalVerbose"/>
+        </SystemCollectorId>
+        <!--SchLog-->
+        <EventCollectorId Value="EventCollector_SchLog">
+          <EventProviders>
+            <EventProviderId Value="SCHLOG"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--CaptureStateOnStart-->
+        <EventCollectorId Value="EventCollector_CaptureState_OnStart">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_NORMAL"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+            <EventProviderId Value="TRACE_DXC_ALL_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_DXGI_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D9On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D10LEVEL9_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3DSCACHE_CaptureStateOnStart"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--CaptureStateOnSave-->
+        <EventCollectorId Value="EventCollector_CaptureState_OnSave">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_NORMAL"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+            <EventProviderId Value="TRACE_DXC_ALL_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_DXGI_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D11On12_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D9On12_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D12_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D11_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D10LEVEL9_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3DSCACHE_CaptureStateOnSave"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--No capture state - applies to Normal and Verbose-->
+        <EventCollectorId Value="EventCollector_NoCaptureState">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DX-0x2F"/>
+            <EventProviderId Value="TRACE_XAML-4"/>
+            <EventProviderId Value="TRACE_WARP-1"/>
+            <EventProviderId Value="TRACE_DXC_STACKS"/>
+            <!--Note that one of the MF GUIDS is not included-->
+            <EventProviderId Value="TRACE_MF"/>
+            <!--TRACE_WME not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_SCHEDULEGUID"/>
+            <!--TRACE_SC not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_WIN32K"/>
+            <EventProviderId Value="TRACE_DWM"/>
+            <EventProviderId Value="TRACE_DWM2"/>
+            <EventProviderId Value="TRACE_DWM3"/>
+            <!--TRACE_TESTFRAMEWORK not included until correct keyword is found-->
+            <!--TRACE_TEST not included until correct keyword is found-->
+            <!--TRACE_DSHOW not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_AE"/>
+            <EventProviderId Value="TRACE_DXVA2"/>
+            <EventProviderId Value="TRACE_DXGIDEBUG_NORMAL"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--No capture state - applies to Normal only-->
+        <EventCollectorId Value="EventCollector_NoCaptureState_Normal">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DX-0x2F"/>
+            <EventProviderId Value="TRACE_XAML-4"/>
+            <EventProviderId Value="TRACE_WARP-1"/>
+            <EventProviderId Value="TRACE_DXGIDEBUG_NORMAL"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--No capture state - applies to Verbose only-->
+        <EventCollectorId Value="EventCollector_NoCaptureState_Verbose">
+          <EventProviders>
+            <EventProviderId Value="TRACE_XAML-5"/>
+            <EventProviderId Value="TRACE_D2D"/>
+            <EventProviderId Value="TRACE_MMCSS"/>
+            <EventProviderId Value="TRACE_WMDRM"/>
+            <EventProviderId Value="TRACE_WMP"/>
+            <EventProviderId Value="TRACE_DVD"/>
+            <EventProviderId Value="TRACE_HME"/>
+            <EventProviderId Value="TRACE_HDDVD"/>
+            <EventProviderId Value="TRACE_CODEC"/>
+            <EventProviderId Value="TRACE_DXGIDEBUG_VERBOSE"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+      
+    <!--Normal ("light") file log profile (inherits from GPUView-NormalVerbose-Base.Light.File)-->
+    <Profile
+        Description="GPUView traces - Normal/Verbose"
+        DetailLevel="Light"
+        Base="GPUView-NormalVerbose-Base.Light.File"
+        Id="GPUView.Light.File"
+        LoggingMode="File"
+        Name="GPUView"
+        >
+      <Collectors Operation="Remove">
+        <EventCollectorId Value="EventCollector_CaptureState_OnSave"/>
+        <EventCollectorId Value="EventCollector_NoCaptureState_Verbose"/>
+      </Collectors>
+    </Profile>
+
+    <!--Normal ("light") circular log profile (inherits from GPUView-NormalVerbose-Base.Light.File)-->
+    <Profile
+        Description="GPUView traces - Normal/Verbose"
+        DetailLevel="Light"
+        Id="GPUView.Light.Memory"
+        Base="GPUView-NormalVerbose-Base.Light.File"
+        LoggingMode="Memory"
+        Name="GPUView">
+      <Collectors Operation="Remove">
+        <EventCollectorId Value="EventCollector_CaptureState_OnStart"/>
+        <EventCollectorId Value="EventCollector_NoCaptureState_Verbose"/>
+      </Collectors>
+    </Profile>
+    
+    <!--Verbose log profile (inherits from GPUView-NormalVerbose-Base.Light.File)-->
+    <Profile
+        Description="GPUView traces - Normal/Verbose"
+        DetailLevel="Verbose"
+        Id="GPUView.Verbose.File"
+        Base="GPUView-NormalVerbose-Base.Light.File"
+        LoggingMode="File"
+        Name="GPUView">
+      <Collectors Operation="Remove">
+        <EventCollectorId Value="EventCollector_CaptureState_OnSave"/>
+        <EventCollectorId Value="EventCollector_NoCaptureState_Normal"/>
+      </Collectors>
+    </Profile>
+    
+    <!--Verbose circular log profile (inherits from GPUView-NormalVerbose-Base.Light.File)-->
+    <Profile
+        Description="GPUView traces - Normal/Verbose"
+        DetailLevel="Verbose"
+        Id="GPUView.Verbose.Memory"
+        Base="GPUView-NormalVerbose-Base.Light.File"
+        LoggingMode="Memory"
+        Name="GPUView">
+      <Collectors Operation="Remove">
+        <EventCollectorId Value="EventCollector_CaptureState_OnStart"/>
+        <EventCollectorId Value="EventCollector_NoCaptureState_Normal"/>
+      </Collectors>
+    </Profile>
+
+    <!--BASE profile for Present level collectors-->
+    <Profile
+        Description="GPUView traces - Present [base profile]"
+        DetailLevel="Verbose"
+        Id="GPUView-Present-Base.Verbose.File"
+        LoggingMode="File"
+        Name="GPUView-Present-Base">
+      <Collectors>
+        <!--System-->
+        <SystemCollectorId Value="SystemCollector">
+          <SystemProviderId Value="SystemProvider_Present"/>
+        </SystemCollectorId>
+        <!--SchLog-->
+        <EventCollectorId Value="EventCollector_SchLog">
+          <EventProviders>
+            <EventProviderId Value="SCHLOG"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--CaptureStateOnStart-->
+        <EventCollectorId Value="EventCollector_CaptureState_OnStart">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_MIN"/>
+            <EventProviderId Value="TRACE_DXC_ALL_PRESENT_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_DXGI_PRESENT_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11_PRESENT_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D9_PRESENT_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--CaptureStateOnSave-->
+        <EventCollectorId Value="EventCollector_CaptureState_OnSave">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_MIN"/>
+            <EventProviderId Value="TRACE_DXC_ALL_PRESENT_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_DXGI_PRESENT_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D11_PRESENT_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_D3D9_PRESENT_CaptureStateOnSave"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+          </EventProviders>
+        </EventCollectorId>
+        <!--No capture state-->
+        <EventCollectorId Value="EventCollector_NoCaptureState">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DX-0x9"/>
+            <EventProviderId Value="TRACE_XAML-4"/>
+            <EventProviderId Value="TRACE_DXC_PRESENT"/>
+            <EventProviderId Value="TRACE_DWM3"/>
+            <EventProviderId Value="TRACE_WIN32K"/>
+            <EventProviderId Value="TRACE_DXCORE"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+      </Profile>
+    
+    <!--Present log profile (inherits from GPUView-Present-Base.Verbose.File)-->
+    <Profile
+        Description="GPUView traces - Present"
+        DetailLevel="Verbose"
+        Base="GPUView-Present-Base.Verbose.File"
+        Id="GPUView-Present.Verbose.File"
+        LoggingMode="File"
+        Name="GPUView-Present">
+      <Collectors Operation="Remove">
+        <EventCollectorId Value="EventCollector_CaptureState_OnSave"/>
+      </Collectors>
+    </Profile>
+
+    <!--Present circular log profile (inherits from GPUView-Present-Base.Verbose.File)-->
+    <Profile
+        Description="GPUView traces - Present"
+        DetailLevel="Verbose"
+        Base="GPUView-Present-Base.Verbose.File"
+        Id="GPUView-Present.Verbose.Memory"
+        LoggingMode="Memory"
+        Name="GPUView-Present">
+        <Collectors Operation="Remove">
+          <EventCollectorId Value="EventCollector_CaptureState_OnStart"/>
+        </Collectors>          
+    </Profile>
+
+    <!--Longhaul log profile-->
+    <Profile
+        Description="GPUView traces - Longhaul"
+        DetailLevel="Verbose"
+        Id="GPUView-Longhaul.Verbose.File"
+        LoggingMode="File"
+        Name="GPUView-Longhaul">
+      <Collectors>
+        <SystemCollectorId Value="SystemCollector">
+          <SystemProviderId Value="SystemProvider_Longhaul"/>
+        </SystemCollectorId>
+        <EventCollectorId Value="EventCollector_Longhaul">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_MIN_CaptureStateOnStart"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+    <!--Longhaul circular log profile (inherits from GPUView-Longhaul.Verbose.File)-->
+    <Profile
+        Description="GPUView traces - Longhaul"
+        DetailLevel="Verbose"
+        Id="GPUView-Longhaul.Verbose.Memory"
+        Base="GPUView-Longhaul.Verbose.File"
+        LoggingMode="Memory"
+        Name="GPUView-Longhaul">
+      <Collectors>
+        <EventCollectorId Value="EventCollector_Longhaul">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_MIN_CaptureStateOnSave"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+    
+    <Profile
+        Description="GPUView traces - TrackedWorkload"
+        DetailLevel="Light"
+        Id="TrackedWorkload.Light.File"
+        LoggingMode="File"
+        Name="TrackedWorkload"
+        >
+      <Collectors>
+        <SystemCollectorId Value="SystemCollector">
+          <SystemProviderId Value="SystemProvider_Light"/>
+        </SystemCollectorId>
+        <EventCollectorId Value="EventCollector_TrackedWorkload_CaptureState_Light">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_NORMAL"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+            <EventProviderId Value="TRACE_DXC_ALL_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_DXGI_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D9On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D10LEVEL9_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3DSCACHE_CaptureStateOnStart"/>
+          </EventProviders>
+        </EventCollectorId>
+        <EventCollectorId Value="EventCollector_TrackedWorkload_NoCaptureState_Light">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DX-0x2F"/>
+            <EventProviderId Value="TRACE_XAML-4"/>
+            <EventProviderId Value="TRACE_WARP-1"/>
+            <EventProviderId Value="TRACE_DXC_STACKS"/>
+            <!--Note that one of the MF GUIDS is not included-->
+            <EventProviderId Value="TRACE_MF"/>
+            <!--TRACE_WME not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_SCHEDULEGUID"/>
+            <!--TRACE_SC not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_WIN32K"/>
+            <EventProviderId Value="TRACE_DWM"/>
+            <EventProviderId Value="TRACE_DWM2"/>
+            <EventProviderId Value="TRACE_DWM3"/>
+            <!--TRACE_TESTFRAMEWORK not included until correct keyword is found-->
+            <!--TRACE_TEST not included until correct keyword is found-->
+            <!--TRACE_DSHOW not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_AE"/>
+            <EventProviderId Value="TRACE_DXVA2"/>
+            <EventProviderId Value="TRACE_DXGIDEBUG_NORMAL"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+    <!--Verbose Tracked Workload log profile-->
+    <Profile
+        Description="GPUView traces - TrackedWorkload"
+        DetailLevel="Verbose"
+        Id="TrackedWorkload.Verbose.File"
+        LoggingMode="File"
+        Name="TrackedWorkload"
+        >
+      <Collectors>
+        <SystemCollectorId Value="SystemCollector">
+          <SystemProviderId Value="SystemProvider_Light"/>
+        </SystemCollectorId>
+         <EventCollectorId Value="EventCollector_TrackedWorkload_CaptureState_Verbose">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DXC_TW_VERBOSE"/>
+            <EventProviderId Value="TRACE_MIRAGE"/>
+            <EventProviderId Value="TRACE_DHD"/>
+            <EventProviderId Value="TRACE_DXC_ALL_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_UMD_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_DXGI_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D9On12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D12_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D11_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3D10LEVEL9_CaptureStateOnStart"/>
+            <EventProviderId Value="TRACE_D3DSCACHE_CaptureStateOnStart"/>
+          </EventProviders>
+        </EventCollectorId>
+        <EventCollectorId Value="EventCollector_TrackedWorkload_NoCaptureState_Verbose">
+          <EventProviders>
+            <EventProviderId Value="TRACE_DX-0x2F"/>
+            <EventProviderId Value="TRACE_XAML-4"/>
+            <EventProviderId Value="TRACE_WARP-1"/>
+            <EventProviderId Value="TRACE_DXC_STACKS"/>
+            <!--Note that one of the MF GUIDS is not included-->
+            <EventProviderId Value="TRACE_MF"/>
+            <!--TRACE_WME not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_SCHEDULEGUID"/>
+            <!--TRACE_SC not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_WIN32K"/>
+            <EventProviderId Value="TRACE_DWM"/>
+            <EventProviderId Value="TRACE_DWM2"/>
+            <EventProviderId Value="TRACE_DWM3"/>
+            <!--TRACE_TESTFRAMEWORK not included until correct keyword is found-->
+            <!--TRACE_TEST not included until correct keyword is found-->
+            <!--TRACE_DSHOW not included until correct keyword is found-->
+            <EventProviderId Value="TRACE_AE"/>
+            <EventProviderId Value="TRACE_DXVA2"/>
+            <EventProviderId Value="TRACE_DXGIDEBUG_NORMAL"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+  </Profiles>
+
+</WindowsPerformanceRecorder>

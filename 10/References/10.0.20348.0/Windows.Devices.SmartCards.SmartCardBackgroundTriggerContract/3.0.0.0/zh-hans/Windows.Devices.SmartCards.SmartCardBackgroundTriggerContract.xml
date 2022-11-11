@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>代表智能卡所触发的事件。</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>初始化 SmartCardTrigger 的新实例</summary>
+      <param name="triggerType">触发器类型。</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>获取智能卡触发器的触发类型。</summary>
+      <returns>SmartCardTriggerType。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>指定应如何启动智能卡应用程序。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>在锁定屏幕上启动应用程序。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>默认启动行为。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>提供有关智能卡触发器的详细信息。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>获取导致触发事件的智能卡模拟器。</summary>
+      <returns>导致触发事件的智能卡模拟器。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>获取智能卡。</summary>
+      <returns>智能卡。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>获取智能卡触发器的源的小程序 ID。</summary>
+      <returns>小程序 ID。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>获取智能卡触发器数据。</summary>
+      <returns>智能卡触发器数据。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>获取智能卡触发器类型。</summary>
+      <returns>智能卡触发器类型。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>异步尝试启动当前的智能卡应用程序，传递指定的参数。</summary>
+      <param name="arguments">指定在启动时要传递到智能卡应用程序的参数的字符串。</param>
+      <returns>一个指示应用程序是否成功启动的布尔值。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>利用指定的行为来异步尝试启动当前的智能卡应用程序，传递指定的参数。</summary>
+      <param name="arguments">指定在启动时要传递到智能卡应用程序的参数的字符串。</param>
+      <param name="behavior">启动应用程序时要使用的行为。</param>
+      <returns>一个指示应用程序是否成功启动的布尔值。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>表示有效的智能卡触发器类型。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>小程序 ID 组注册已更改事件。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>主机应用程序已激活事件。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>字段输入事件。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>字段退出事件。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>事务事件。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>读卡器卡是添加的事件。</summary>
+    </member>
+  </members>
+</doc>

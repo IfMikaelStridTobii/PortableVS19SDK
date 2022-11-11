@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardEmulatorContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.Devices.SmartCards.KnownSmartCardAppletIds">
+      <summary>Classe qui représente une sélection d'ID d'applet de carte à puce connus qui sont exposés via leurs propriétés.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.PaymentSystemEnvironment">
+      <summary>Obtient l'ID d'applet de l'application PSE (Environnement du système de paiement).</summary>
+      <returns>Mémoire tampon contenant l'ID d'applet de l'application PSE.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.ProximityPaymentSystemEnvironment">
+      <summary>Obtient l'ID d'applet de l'application PPSE (Environnement du système de paiement de proximité).</summary>
+      <returns>Mémoire tampon contenant l'ID d'applet PPSE.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult">
+      <summary>Définit les valeurs renvoyées pour la méthode RequestActivationPolicyChangeAsync.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Allowed">
+      <summary>La modification de stratégie a été autorisée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Denied">
+      <summary>La modification de stratégie n'a pas été autorisée.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroup">
+      <summary>Classe qui représente une carte numérisée, qui peut être autogérée (Émulation de la carte hôte) ou utilisée avec un élément sécurisé incorporé (eSE) physique. Cette classe permet également de définir une collection d'ID d'applet de carte à puce.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor">
+      <summary>Initialise une nouvelle instance de la classe SmartCardAppletIdGroup.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor(System.String,Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IBuffer},Windows.Devices.SmartCards.SmartCardEmulationCategory,Windows.Devices.SmartCards.SmartCardEmulationType)">
+      <summary>Initialise une nouvelle instance de la classe SmartCardAppletIdGroup à l'aide des paramètres spécifiés.</summary>
+      <param name="displayName">Nom de ce groupe d'ID d'applets.</param>
+      <param name="appletIds">Liste des ID d'applets.</param>
+      <param name="emulationCategory">Catégorie de cartes à puce à laquelle les identificateurs d'applets s'appliquent, carte de paiement ou autre.</param>
+      <param name="emulationType">Type de carte à puce à laquelle les identificateurs d'applets s'appliquent, carte hôte ou UICC.</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AppletIds">
+      <summary>Obtient la collection d'ID d'applets.</summary>
+      <returns>Collection d'ID d'applets.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AutomaticEnablement">
+      <summary>Obtient ou définit une valeur booléenne indiquant si le système d'exploitation est autorisé à activer cet objet AppletIdGroup.</summary>
+      <returns>Valeur booléenne indiquant si le système d'exploitation est autorisé à activer cet objet AppletIdGroup.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Description">
+      <summary>Obtient ou définit une description détaillée d'une carte à puce afin de faciliter son identification. Vous pouvez, par exemple, la définir sur les quatre derniers chiffres d'un numéro de carte de crédit.</summary>
+      <returns>Chaîne contenant une description détaillée d'une carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.DisplayName">
+      <summary>Obtient ou définit le nom de ce groupe d'ID d'applets.</summary>
+      <returns>Nom de ce groupe d'ID d'applets.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Logo">
+      <summary>Obtient ou définit une image qui représente la carte à puce. Elle peut, par exemple, reproduire l'aspect physique d'une carte de crédit.</summary>
+      <returns>Objet IRandomAccessStreamReference qui fournit l'accès à un flux contenant une image qui représente la carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.MaxAppletIds">
+      <summary>Obtient le nombre maximal d'identificateurs d'applets autorisés.</summary>
+      <returns>Nombre maximal d'identificateurs d'applets autorisés.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Properties">
+      <summary>Obtient un conteneur de propriétés (génériques) pour une carte à puce.</summary>
+      <returns>Objet ValueSet contenant un conteneur de propriétés (génériques) pour une carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SecureUserAuthenticationRequired">
+      <summary>Obtient ou définit une valeur qui indique si la carte à puce nécessite que l'utilisateur s'authentifie à l’aide de la biométrie sécurisée avant que la carte à puce traite une transaction (par exemple, l’utilisateur utilise ses empreintes digitales pour approuver un paiement). Cette propriété s’applique uniquement aux applets basés sur un élément sécurisé incorporé (eSE).</summary>
+      <returns>True si la carte à puce nécessite que l'utilisateur s'authentifie à l'aide de la biométrie sécurisée avant que la carte à puce traite une transaction ; sinon false.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationCategory">
+      <summary>Définit ou obtient la catégorie de cartes à puce à laquelle les identificateurs d'applets s'appliquent, carte de paiement ou autre.</summary>
+      <returns>Catégorie de cartes à puce à laquelle les identificateurs d'applets s'appliquent, carte de paiement ou autre.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationType">
+      <summary>Définit ou obtient le type de carte à puce à laquelle les identificateurs d'applets s'appliquent, carte hôte ou UICC.</summary>
+      <returns>Type de carte à puce à laquelle les identificateurs d'applets s'appliquent, carte hôte ou UICC.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy">
+      <summary>Définit les valeurs valides pouvant être passées à la méthode RequestActivationPolicyChangeAsync.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Disabled">
+      <summary>La stratégie d'activation est désactivée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Enabled">
+      <summary>La stratégie d'activation est activée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.ForegroundOverride">
+      <summary>La stratégie d'activation est définie sur la substitution de premier plan.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration">
+      <summary>Représente un groupe d'ID d'applets enregistré.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.ActivationPolicy">
+      <summary>Obtient la stratégie d'activation pour le groupe d'identificateurs d'applets enregistré.</summary>
+      <returns>Stratégie d'activation pour le groupe d'identificateurs d'applets enregistré.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.AppletIdGroup">
+      <summary>Obtient le groupe d'ID d'applets enregistré.</summary>
+      <returns>Groupe d'ID d'applets enregistré.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.Id">
+      <summary>Obtient un identificateur unique qui représente cet enregistrement de groupe d'identificateurs d'applets.</summary>
+      <returns>Identificateur unique qui représente cet enregistrement de groupe d'identificateurs d'applets.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SmartCardReaderId">
+      <summary>Obtient l'ID d'un objet SmartCardReader associé à un élément sécurisé. Vous pouvez transmettre cet ID à SmartCardReader.FromIdAsync.</summary>
+      <returns>Chaîne contenant l'ID d'un objet SmartCardReader associé à un élément sécurisé.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.RequestActivationPolicyChangeAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy)">
+      <summary>Tente de modifier de façon asynchrone l'objet ActivationPolicy pour ce groupe d'ID d'applets enregistrés.</summary>
+      <param name="policy">Nouvelle stratégie d'activation.</param>
+      <returns>Indique si la modification de stratégie a été autorisée ou refusée.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetAutomaticResponseApdusAsync(Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu})">
+      <summary>Définit une collection d'objets SmartCardAutomaticResponseApdu contenant les réponses automatiques à retourner pour cet objet SmartCardAppletIdGroupRegistration.</summary>
+      <param name="apdus">Collection de réponses automatiques.</param>
+      <returns>Action asynchrone qui se termine une fois que l'opération demandée est effectuée.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetPropertiesAsync(Windows.Foundation.Collections.ValueSet)">
+      <summary>Définit de façon asynchrone la valeur d'un objet SmartCardAppletIdGroup.Properties.</summary>
+      <param name="props">Objet ValueSet contenant un conteneur de propriétés (génériques) pour une carte à puce.</param>
+      <returns>Action de définition de propriétés asynchrones, qui est exécutée lorsque les propriétés ont été définis.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu">
+      <summary>Représente l'unité APDU (Application Protocol Data Unit) de réponse automatique de carte à puce.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.#ctor(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <summary>Initialise une nouvelle instance de la classe.</summary>
+      <param name="commandApdu">La commande APDU envoyée par le lecteur NFC.</param>
+      <param name="responseApdu">Réponse au lecteur NFC.</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AllowWhenCryptogramGeneratorNotPrepared">
+      <summary>Obtient ou définit une valeur booléenne indiquant si le traitement APDU automatique doit être poursuivi si le matériel de cryptogramme n'est pas prêt à être utilisé sans l'autorisation de l'utilisateur.</summary>
+      <returns>Valeur booléenne indiquant si le traitement APDU automatique doit être poursuivi si le matériel de cryptogramme n'est pas prêt à être utilisé sans l'autorisation de l'utilisateur.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AppletId">
+      <summary>Obtient ou définit l'identificateur d'applets pour cette unité APDU.</summary>
+      <returns>L'identificateur d'applets pour cette unité APDU.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApdu">
+      <summary>Obtient ou définit la commande pour cette unité APDU.</summary>
+      <returns>La commande pour l'unité APDU.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApduBitMask">
+      <summary>Obtient ou définit le masque de bits pour la commande APDU.</summary>
+      <returns>Masque de bits pour de la commande APDU.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.InputState">
+      <summary>Obtient et applique l'état d'entrée.</summary>
+      <returns>L'état d'entrée.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.OutputState">
+      <summary>Obtient et applique l'état de sortie.</summary>
+      <returns>L'état de sortie.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ResponseApdu">
+      <summary>Obtient ou définit la réponse à partir de l'unité APDU (Application Protocol Data Unit).</summary>
+      <returns>La réponse de l'unité APDU.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ShouldMatchLength">
+      <summary>Obtient ou définit une valeur booléenne indiquant si la commande CommandApdu et la commande entrante doivent avoir exactement la même longueur.</summary>
+      <returns>Une valeur booléenne indiquant si la commande CommandApdu et la commande entrante doivent avoir exactement la même longueur.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus">
+      <summary>Définit l'état de la réponse automatique des lecteurs de carte à puce.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.None">
+      <summary>Aucun état fourni.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.Success">
+      <summary>La lecture a réussi.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.UnknownError">
+      <summary>La lecture a échoué avec une erreur non reconnue.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm">
+      <summary>Définit l'algorithme de génération de cryptogramme pour une étape de positionnement de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.CbcMac">
+      <summary>Utilisez l'algorithme de code d'authentification de message de chaînage de bloc de chiffrement (CBC-MAC).</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3MD">
+      <summary>Utilisez l'algorithme CVC3-MD.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3Umd">
+      <summary>Utilisez l'algorithme CVC3-UMD.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.DecimalizedMsd">
+      <summary>Utilisez l'algorithme MSD avec décimale.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.None">
+      <summary>N'utilisez aucun algorithme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.RsaPkcs1">
+      <summary>Utilisez l'algorithme Public-Key Cryptography Standards 1 (PKCS) RSA.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha1">
+      <summary>Utilisez l'algorithme SHA-1.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha256Hmac">
+      <summary>Utilisez l'algorithme HMAC SHA-256.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.SignedDynamicApplicationData">
+      <summary>Utilisez l'algorithme de données d'application dynamiques signées.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGenerator">
+      <summary>Représente le mécanisme de fourniture de matériels pris en charge pour des applications et des protocoles de paiement sécurisés.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramAlgorithms">
+      <summary>Obtient les algorithmes de cryptogramme pris en charge.</summary>
+      <returns>Les algorithmes pris en charge.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageConfirmationResponseFormats">
+      <summary>Obtient les formats de réponse de confirmation de package de matériel de cryptogramme pris en charge.</summary>
+      <returns>Formats de réponse de confirmation de package de matériel de cryptogramme pris en charge.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageFormats">
+      <summary>Obtient les formats de package de matériel de cryptogramme pris en charge.</summary>
+      <returns>Formats de package de matériel de cryptogramme pris en charge.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialTypes">
+      <summary>Obtient les types de matériels de cryptogramme pris en charge.</summary>
+      <returns>Types de matériels de cryptogramme pris en charge.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedSmartCardCryptogramStorageKeyCapabilities">
+      <summary>Obtient les fonctionnalités de clé de stockage de cryptogramme de carte à puce prises en charge.</summary>
+      <returns>Fonctionnalités de clé de stockage de cryptogramme de carte à puce prises en charge.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.CreateCryptogramMaterialStorageKeyAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities)">
+      <summary>Génère une clé de stockage de cryptogramme.</summary>
+      <param name="promptingBehavior">Le comportement d'invite d'utilisateur.</param>
+      <param name="storageKeyName">Le nom de la nouvelle clé de stockage.</param>
+      <param name="algorithm">L'algorithme de chiffrement à utiliser avec la clé de stockage.</param>
+      <param name="capabilities">Les fonctionnalités de la nouvelle clé de stockage.</param>
+      <returns>Une opération asynchrone qui se termine avec un état d'exécution après la tentative de créer une clé de stockage.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialPackageAsync(System.String)">
+      <summary>Supprime un package de matériel de cryptogramme.</summary>
+      <param name="materialPackageName">Nom du package de matériel.</param>
+      <returns>Une opération asynchrone qui se termine avec un état d'exécution après que le comportement d'invite soit terminé.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialStorageKeyAsync(System.String)">
+      <summary>Supprime la clé de stockage de l'application et tous ses packages inscrits.</summary>
+      <param name="storageKeyName">Le nom de la clé de stockage.</param>
+      <returns>Une opération asynchrone qui se termine avec un état d'exécution.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialCharacteristicsAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String)">
+      <summary>Obtient toutes les caractéristiques du matériel de cryptogramme.</summary>
+      <param name="promptingBehavior">Comportement d'invite.</param>
+      <param name="materialPackageName">Nom du package de matériel.</param>
+      <returns>Retourne une opération asynchrone qui se termine avec le résultat des caractéristiques.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync">
+      <summary>Obtient toutes les caractéristiques du package matériel de cryptogramme.</summary>
+      <returns>Retourne une opération asynchrone qui se termine avec le résultat des caractéristiques du package.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync(System.String)">
+      <summary>Obtient toutes les caractéristiques du package matériel de cryptogramme.</summary>
+      <param name="storageKeyName">Nom de la clé de stockage.</param>
+      <returns>Retourne une opération asynchrone qui se termine avec le résultat des caractéristiques du package.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramStorageKeyCharacteristicsAsync">
+      <summary>Obtient toutes les caractéristiques de la clé de stockage.</summary>
+      <returns>Retourne une opération asynchrone qui se termine avec le résultat des caractéristiques.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetSmartCardCryptogramGeneratorAsync">
+      <summary>Obtient le concepteur de cryptogramme de carte à puce.</summary>
+      <returns>Une opération asynchrone qui se termine avec un concepteur.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ImportCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>Importe un package de cryptogramme.</summary>
+      <param name="format">Format du package.</param>
+      <param name="storageKeyName">Le nom de la clé de stockage.</param>
+      <param name="materialPackageName">Nom du package.</param>
+      <param name="cryptogramMaterialPackage">Une mémoire tampon qui contient les données du package de cryptogramme.</param>
+      <returns>Une opération asynchrone qui se termine avec un état d'exécution après la tentative d'importer un module.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.IsSupported">
+      <summary>Retourne une valeur indiquant si l'objet SmartCardCryptogramGenerator est pris en charge.</summary>
+      <returns>True si SmartCardCryptogramGenerator est pris en charge.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestCryptogramMaterialStorageKeyInfoAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType)">
+      <summary>Retourne la clé publique et les informations d'attestation relatives à la clé de stockage de cryptogramme.</summary>
+      <param name="promptingBehavior">Le comportement d'invite à afficher à l'utilisateur pour la validation.</param>
+      <param name="storageKeyName">Le nom de la clé de stockage.</param>
+      <param name="format">Le format dans lequel la clé publique de la clé de stockage doit être retournée.</param>
+      <returns>Une opération asynchrone qui retourne les informations de clés de stockage de cryptogramme de carte à puce.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestUnlockCryptogramMaterialForUseAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior)">
+      <summary>Demande que les packages de matériels de cryptogramme précédemment importés soient préparés pour l'utilisation.</summary>
+      <param name="promptingBehavior">Le comportement d'invite de déverrouillage.</param>
+      <returns>Une opération asynchrone qui se termine avec un état d'exécution après que le comportement d'invite soit terminé.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.TryProvePossessionOfCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>Cette méthode permet à l'application de paiement de demander au concepteur de cryptogramme la preuve de possession de package de matériel.</summary>
+      <param name="promptingBehavior">Le comportement d'invite à afficher à l'utilisateur pour la validation.</param>
+      <param name="responseFormat">Format de la réponse.</param>
+      <param name="materialPackageName">Nom du package de matériel.</param>
+      <param name="materialName">Le nom du matériel.</param>
+      <param name="challenge">Une mémoire tampon qui contient le jeton de stimulation de confirmation. Le jeton de stimulation doit comporter des caractères UTF-8 selon le format de l'expression régulière C# suivante. ```</param>
+      <returns>Une opération asynchrone qui se termine avec la preuve de possession de matériel.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ValidateRequestApduAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>Valide la demande APDU.</summary>
+      <param name="promptingBehavior">Comportement d'invite.</param>
+      <param name="apduToValidate">APDU à valider.</param>
+      <param name="cryptogramPlacementSteps">Étapes de positionnement de cryptogramme.</param>
+      <returns>Retourne une opération asynchrone qui se termine avec l'état d'exécution.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus">
+      <summary>Définit les états des méthodes de concepteur de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ApduResponseNotSent">
+      <summary>La réponse APDU n'a pas été envoyée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationCanceled">
+      <summary>L'autorisation a été annulée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationFailed">
+      <summary>L'autorisation a échoué.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationRequired">
+      <summary>L'autorisation est requise.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.CryptogramMaterialPackageStorageKeyExists">
+      <summary>La clé de stockage de package de matériel de cryptogramme existe déjà.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.InvalidCryptogramMaterialUsage">
+      <summary>Utilisation du matériel de cryptogramme incorrecte.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackage">
+      <summary>Il n'existe aucun package de matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackageStorageKey">
+      <summary>Il n'y a aucune clé de stockage de package de matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NotSupported">
+      <summary>L'opération n'est pas prise en charge.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.OtherError">
+      <summary>Une erreur inconnue s'est produite.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.Success">
+      <summary>L'opération a été exécutée correctement.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnknownCryptogramMaterialName">
+      <summary>Le nom de matériel spécifié est introuvable en ouvrant le package.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnsupportedCryptogramMaterialPackage">
+      <summary>Le package de matériel de cryptogramme n'est pas pris en charge.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ValidationFailed">
+      <summary>Échec de la validation.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult">
+      <summary>Cette classe contient les informations retournées par GetAllCryptogramMaterialCharacteristicsAsync.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.#ctor">
+      <summary>Crée une instance de SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Characteristics">
+      <summary>Obtient les caractéristiques.</summary>
+      <returns>Caractéristiques.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.OperationStatus">
+      <summary>Obtient l’état de l’opération de GetAllCryptogramMaterialCharacteristicsAsync.</summary>
+      <returns>État de l’opération de GetAllCryptogramMaterialCharacteristicsAsync.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult">
+      <summary>Cette classe contient les informations retournées par GetAllCryptogramMaterialPackageCharacteristicsAsync.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.#ctor">
+      <summary>Crée une instance de SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Characteristics">
+      <summary>Obtient les caractéristiques.</summary>
+      <returns>Caractéristiques.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.OperationStatus">
+      <summary>Obtient l’état de l’opération de GetAllCryptogramMaterialPackageCharacteristicsAsync.</summary>
+      <returns>État de l’opération de GetAllCryptogramMaterialPackageCharacteristicsAsync.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult">
+      <summary>Cette classe contient les informations retournées par GetAllCryptogramStorageKeyCharacteristicsAsync.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.#ctor">
+      <summary>Crée une instance de SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Characteristics">
+      <summary>Obtient les caractéristiques.</summary>
+      <returns>Caractéristiques.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.OperationStatus">
+      <summary>Obtient l’état de l’opération de GetAllCryptogramStorageKeyCharacteristicsAsync.</summary>
+      <returns>État de l’opération de GetAllCryptogramStorageKeyCharacteristicsAsync.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics">
+      <summary>Cette classe contient les caractéristiques du matériel de cryptogramme.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.#ctor">
+      <summary>Crée une nouvelle instance de SmartCardCryptogramMaterialCharacteristics</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedAlgorithms">
+      <summary>Obtient les algorithmes autorisés.</summary>
+      <returns>Algorithmes autorisés.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedProofOfPossessionAlgorithms">
+      <summary>Obtient la preuve de possession autorisée d'algorithmes.</summary>
+      <returns>Preuve de possession autorisée d'algorithmes.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedValidations">
+      <summary>Obtient les algorithmes de validation autorisés.</summary>
+      <returns>Algorithmes de validation autorisés.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialLength">
+      <summary>Obtient la longueur du matériel.</summary>
+      <returns>Longueur du matériel.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialName">
+      <summary>Obtient le nom du matériel.</summary>
+      <returns>Le nom du matériel.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialType">
+      <summary>Obtient le type de matériel.</summary>
+      <returns>Type de matériel.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionMethod">
+      <summary>Obtient la méthode de protection.</summary>
+      <returns>Méthode de protection.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionVersion">
+      <summary>Obtient la version de protection.</summary>
+      <returns>Version de protection.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics">
+      <summary>Cette classe contient les caractéristiques d'un package matériel de cryptogramme.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.#ctor">
+      <summary>Crée une nouvelle instance de SmartCardCryptogramMaterialPackageCharacteristics.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.DateImported">
+      <summary>Obtient la date d'importation du package matériel.</summary>
+      <returns>Date d'importation du package matériel.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageFormat">
+      <summary>Obtient le format du package.</summary>
+      <returns>Format du package.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageName">
+      <summary>Obtient le nom du package.</summary>
+      <returns>Nom du package.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.StorageKeyName">
+      <summary>Obtient le nom de la clé de stockage.</summary>
+      <returns>Nom de la clé de stockage.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat">
+      <summary>Définit le format de la preuve de possession retourné en appelant la méthode TryProvePossessionOfCryptogramMaterialPackageAsync.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.None">
+      <summary>Aucun format n'est spécifié.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.VisaHmac">
+      <summary>Format de code d'authentification de message HMAC Visa.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat">
+      <summary>Définit le format de package de matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.JweRsaPki">
+      <summary>Le package de matériel est JWE (JSON Web Encrypted (JWE)) par RSA.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.None">
+      <summary>Le matériel n'a pas de format.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof">
+      <summary>Contient le résultat de l'appel TryProvePossessionOfCryptogramMaterialPackageAsync avec un jeton de stimulation pour prouver que l'appareil possède le matériel de cryptogramme identifié.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.OperationStatus">
+      <summary>Obtient ou définit l'état d'exécution de l'opération de preuve.</summary>
+      <returns>L'état d'exécution.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.Proof">
+      <summary>Obtient le résultat de la preuve de l'opération de possession. Ce champ est uniquement valide si le champ OperationStatus a la valeur Success.</summary>
+      <returns>Une mémoire tampon qui contient le résultat d'une preuve d'opération de possession réussie.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod">
+      <summary>Définit la méthode de protection du matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.None">
+      <summary>Permet de ne pas protéger le matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.WhiteBoxing">
+      <summary>Permet de protéger le matériel de cryptogramme par « whiteboxing ».</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType">
+      <summary>Définit le type de matériel de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.Aes">
+      <summary>Le matériel correspond à des données générées à l'aide de AES.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.None">
+      <summary>Le matériel n'a pas de type de données.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.RsaPkcs1">
+      <summary>Le matériel correspond à des données générées à l'aide de RSA en fonction de PKCS #1</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.StaticDataAuthentication">
+      <summary>Le matériel correspond à des données statiques pour l'authentification.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.TripleDes112">
+      <summary>Les données du matériel sont générées à l'aide de TripleDes112.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions">
+      <summary>Définit des options de positionnement de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.ChainOutput">
+      <summary>La sortie de l'étape de positionnement doit être liée dans l'étape spécifiée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.None">
+      <summary>L'option de positionnement n'a pas de format défini.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.UnitsAreInNibbles">
+      <summary>Les valeurs CryptogramOffset, TemplateOffset, et CryptogramLength en quartets et non en octets.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep">
+      <summary>Contient des instructions pour définir un cryptogramme dans un message sortant.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.#ctor">
+      <summary>Construit un objet SmartCardCryptogramPlacementStep.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.Algorithm">
+      <summary>Obtient ou définit une étape facultative de positionnement qui utilise la sortie de cette étape de positionnement en tant qu'entrée pour la prochaine étape de positionnement spécifiée.</summary>
+      <returns>La cible d'une étape liée. La valeur doit être null si cette étape de positionnement n'est pas liée.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.ChainedOutputStep">
+      <summary>Obtient ou définit la sortie de cette étape liée.</summary>
+      <returns>La sortie de cette étape liée.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramLength">
+      <summary>Obtient ou définit la longueur de la sortie à obtenir de l'offset.</summary>
+      <returns>Le cryptogramme inséré dans le message sortant ne peut pas dépasser cette longueur. Les unités peuvent être des octets ou des quartets, selon la balise UnitsAreInNibbles de la propriété CryptogramPlacementOptions.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialName">
+      <summary>Obtient ou définit le nom du matériel de cryptogramme à utiliser lors de cette étape.</summary>
+      <returns>Le nom du matériel de cryptogramme à utiliser lors de la génération du cryptogramme à placer dans ce message sortant.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialPackageName">
+      <summary>Obtient ou définit le nom du package de matériel de cryptogramme qui contient le matériel spécifié.</summary>
+      <returns>Le nom du package de matériel de cryptogramme permettant de trouver le matériel de cryptogramme nommé.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramOffset">
+      <summary>Obtient ou définit les données qui seront utilisées pour générer le cryptogramme à placer dans le message sortant.</summary>
+      <returns>L'offset dans le cryptogramme généré pour commencer la copie dans le message qui sera envoyé. Les unités peuvent être des octets ou des quartets, selon la balise UnitsAreInNibbles du champ CryptogramPlacementOptions.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramPlacementOptions">
+      <summary>Obtient ou définit des options de positionnement de cryptogramme.</summary>
+      <returns>Les options de positionnement de cryptogramme.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.SourceData">
+      <summary>Obtient ou définit les données qui sont chiffrées dans cette étape de cryptogrammes de chaînage.</summary>
+      <returns>Les données sources.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.TemplateOffset">
+      <summary>Obtient ou définit l'offset dans la mémoire tampon de sortie cible dans laquelle le cryptogramme généré sera placé. Les unités peuvent être des octets ou des quartets, selon la balise UnitsAreInNibbles du champ CryptogramPlacementOptions.</summary>
+      <returns>L'offset du modèle de données.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm">
+      <summary>Définit les algorithmes de clé de stockage de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.None">
+      <summary>La clé de stockage n'est pas chiffrée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.Rsa2048">
+      <summary>La clé de stockage est chiffrée par RSA-2048.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities">
+      <summary>Définit les fonctions de clé de stockage de cryptogramme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.HardwareProtection">
+      <summary>La clé de stockage a la protection de matériel.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.None">
+      <summary>La clé de stockage n'a pas de fonctions définies dans cette énumération.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.UnlockPrompt">
+      <summary>La clé de stockage requiert une entrée tactile avant d'être utilisée dans une opération de chiffrement.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics">
+      <summary>Cette classe contient les caractéristiques des clés de stockage.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.#ctor">
+      <summary>Crée une nouvelle instance de SmartCardCryptogramStorageKeyCharacteristics.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Algorithm">
+      <summary>Obtient l'algorithme.</summary>
+      <returns>Algorithme.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Capabilities">
+      <summary>Obtient les fonctionnalités.</summary>
+      <returns>Fonctionnalités.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.DateCreated">
+      <summary>Obtient la date de création de cette clé de stockage.</summary>
+      <returns>Date de création de cette clé de stockage.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.StorageKeyName">
+      <summary>Obtient le nom de la clé de stockage.</summary>
+      <returns>Nom de la clé de stockage.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo">
+      <summary>Contient des informations sur la clé de mémoire pour que les applications puissent enregistrer et certifier les informations de clés avec leur service.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Attestation">
+      <summary>Obtient l'attestation.</summary>
+      <returns>Une mémoire tampon qui contient l'attestation.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationCertificateChain">
+      <summary>Obtient la chaîne de certificats d'attestation.</summary>
+      <returns>Une mémoire tampon qui contient la chaîne de certificats d'attestation.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationStatus">
+      <summary>Obtient l'état d'attestation.</summary>
+      <returns>L'état d'attestation.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Capabilities">
+      <summary>Obtient les fonctions de clé de stockage de cryptogramme.</summary>
+      <returns>Fonctions de clé de stockage de cryptogramme.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationalRequirements">
+      <summary>Obtient les conditions opérationnelles de la clé de stockage.</summary>
+      <returns>Conditions opérationnelles.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationStatus">
+      <summary>Obtient l'état d'exécution.</summary>
+      <returns>L'état d'exécution.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKey">
+      <summary>Obtient la clé publique.</summary>
+      <returns>Une mémoire tampon contenant la clé publique dans le format spécifié lors de l'appel de RequestCryptogramMaterialStorageKeyInfoAsync.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKeyBlobType">
+      <summary>Obtient le type de l'objet clé publique. Cette valeur indique le type d'objet blob de clé publique demandé dans la méthode RequestCryptogramMaterialStorageKeyInfoAsync.</summary>
+      <returns>Type de l'objet clé publique.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus">
+      <summary>Définit l'état d'attestation d'une clé.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.NoAttestation">
+      <summary>La clé n'a aucune attestation.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithoutTpm">
+      <summary>La clé est une clé de logiciel sur un périphérique sans module de plateforme sécurisée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithTpm">
+      <summary>La clé est une clé de logiciel sur un périphérique avec module de plateforme sécurisée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyUnknownAttestationStatus">
+      <summary>Le module de plateforme sécurisée prenant en charge la clé a un état d'attestation inconnu.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithAttestation">
+      <summary>La clé est une clé de module de plateforme sécurisée avec attestation.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithLongTermAttestationFailure">
+      <summary>La clé est une clé de module de plateforme sécurisée avec échec d'attestation à long terme.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithoutAttestationCapability">
+      <summary>La clé est une clé de module de plateforme sécurisée sur un périphérique qui n'a pas la possibilité de fournir l'attestation.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithTemporaryAttestationFailure">
+      <summary>La clé est une clé de module de plateforme sécurisée avec échec d'attestation temporaire.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationCategory">
+      <summary>Définit les catégories valides de cartes à puce qui peuvent être émulées.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Other">
+      <summary>Spécifie des cartes à puce autres que des cartes de paiement, par exemple des cartes de fidélité ou des badges de sécurité.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Payment">
+      <summary>Spécifie des cartes de paiement.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationType">
+      <summary>Définit le mécanisme par lequel le périphérique émule une carte à puce.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.EmbeddedSE">
+      <summary>Le périphérique émule une carte à puce en transférant les commandes APDU de l'application hôte à un lecteur SE intégré.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Host">
+      <summary>Le périphérique émule une carte à puce en transférant les commandes APDU à l'application hôte, qui répond.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Uicc">
+      <summary>Le périphérique émule une carte à puce en transférant les commandes APDU de l'application directement à la carte physique UICC. La carte UICC est communément appelée carte SIM.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulator">
+      <summary>Représente un périphérique d'émulation de carte à puce.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.EnablementPolicy">
+      <summary>Obtient la stratégie d'émulation de carte actuelle définie par l'utilisateur.</summary>
+      <returns>Stratégie d'émulation de carte actuelle définie par l'utilisateur via les paramètres du téléphone. Cette propriété est en lecture seule pour l'application ; vous devez indiquer à l'utilisateur de modifier la stratégie d'émulation de carte dans les paramètres de son téléphone, si cette opération est autorisée par l'opérateur mobile.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.MaxAppletIdGroupRegistrations">
+      <summary>Obtient le nombre maximal d'enregistrements de groupe d'identificateurs d'applets autorisés.</summary>
+      <returns>Nombre maximal d'enregistrements de groupe d'identificateurs d'applets autorisés.</returns>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ApduReceived">
+      <summary>Se produit lorsqu'une commande APDU est reçue par le contrôleur NFC.</summary>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ConnectionDeactivated">
+      <summary>Se produit lorsque la connexion à l'appareil est physiquement interrompue ou lorsque le lecteur NFC demande une connexion à une autre application.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetAppletIdGroupRegistrationsAsync">
+      <summary>Obtient les groupes d'identificateurs d'applets enregistrés pour cette carte à puce, de façon asynchrone.</summary>
+      <returns>Groupes d'identificateur d'applets enregistrés pour cette carte à puce.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetDefaultAsync">
+      <summary>Retourne l'objet SmartCardEmulator qui représente le périphérique d'émulation de carte à puce par défaut.</summary>
+      <returns>Une fois l'opération asynchrone terminée, retourne l'émulateur de carte à puce par défaut ou null s'il n'existe aucun émulateur de carte à puce.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsHostCardEmulationSupported">
+      <summary>Obtient une valeur booléenne indiquant si l'émulation de la carte hôte est prise en charge par ce périphérique.</summary>
+      <returns>True si l'émulation de la carte hôte est prise en charge par ce périphérique.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsSupported">
+      <summary>Retourne une valeur indiquant si l'objet SmartCardEmulator est pris en charge.</summary>
+      <returns>True si SmartCardEmulator est pris en charge.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.RegisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroup)">
+      <summary>Enregistre de façon asynchrone un groupe d'ID d'applets.</summary>
+      <param name="appletIdGroup">Groupe d'identificateurs d'applets à enregistrer.</param>
+      <returns>Groupe d'identificateurs d'applets enregistrés.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.Start">
+      <summary>Démarre l'émulateur de carte à puce. Cette méthode doit être appelée à partir d'une tâche d'arrière-plan.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.UnregisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration)">
+      <summary>Annule de façon asynchrone l'inscription d'un groupe d'ID d'applets précédemment enregistrés.</summary>
+      <param name="registration">Groupe d'ID d'applets précédemment enregistrés.</param>
+      <returns>Un objet IAsyncAction qui est utilisé pour contrôler l'opération asynchrone.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs">
+      <summary>Fournit des données pour l'événement ApduReceived.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.AutomaticResponseStatus">
+      <summary>Obtient un objet SmartCardAutomaticResponseStatus indiquant que la réponse automatique a déjà été correctement envoyée (**Success*), a échoué après une tentative (**UnknownError**), ou n'a pas été mise en correspondance avec une règle de réponse automatique (**None**).</summary>
+      <returns>L'objet qui indique l'état de la réponse automatique.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.CommandApdu">
+      <summary>Représente une commande APDU envoyée par un lecteur NFC.</summary>
+      <returns>Une commande APDU envoyée par un lecteur NFC.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.ConnectionProperties">
+      <summary>Obtient les propriétés de connexion de l'émulateur de carte à puce.</summary>
+      <returns>Propriétés de connexion de l'émulateur de carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.State">
+      <summary>Obtient l'état.</summary>
+      <returns>L'état.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer)">
+      <summary>Essaie de répondre à une unité APDU.</summary>
+      <param name="responseApdu">Une mémoire tampon qui contient la réponse.</param>
+      <returns>Retourne une opération asynchrone qui retourne un type boolean lorsque l'opération se termine. Le type boolean est true si l'opération a réussi et false sinon.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.IReference{System.UInt32})">
+      <summary>Essaie de répondre à une unité APDU.</summary>
+      <param name="responseApdu">Une mémoire tampon qui contient la réponse.</param>
+      <param name="nextState">Référence contenant l'état suivant.</param>
+      <returns>Retourne une opération asynchrone qui retourne une valeur booléenne lorsque l'opération se termine. La valeur booléenne est true si l'opération s'est terminée avec succès ; sinon, false.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>Tente de répondre à une commande APDU, en plaçant les cryptogrammes dans le message sortant, comme indiqué par les étapes de positionnement.</summary>
+      <param name="responseTemplate">Mémoire tampon contenant une réponse de modèle.</param>
+      <param name="cryptogramPlacementSteps">Collection contenant les étapes de cryptogramme.</param>
+      <returns>Retourne une opération asynchrone qui se termine avec un état d'exécution.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep},Windows.Foundation.IReference{System.UInt32})">
+      <summary>Retourne une opération asynchrone qui se termine avec un état d'exécution.</summary>
+      <param name="responseTemplate">Mémoire tampon contenant une réponse de modèle.</param>
+      <param name="cryptogramPlacementSteps">Collection contenant les étapes de cryptogramme.</param>
+      <param name="nextState">Référence contenant l'état suivant.</param>
+      <returns>Retourne une opération asynchrone qui se termine avec un état d'exécution.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs">
+      <summary>Fournit des données pour l'événement ConnectionDeactivated.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.ConnectionProperties">
+      <summary>Obtient les propriétés de connexion pour l'émulateur de carte à puce.</summary>
+      <returns>Propriétés de connexion pour l'émulateur de carte à puce.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.Reason">
+      <summary>Obtient la raison de la désactivation de la connexion de la carte à puce au lecteur NFC.</summary>
+      <returns>Raison de la désactivation de la connexion de la carte à puce au lecteur NFC.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason">
+      <summary>Définit les raisons pour lesquelles la connexion d'une carte à puce à un lecteur de NFC peut être désactivée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionLost">
+      <summary>La connexion physique au lecteur a été perdue.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionRedirected">
+      <summary>La connexion est redirigée vers une autre application car le terminal de lecteur sélectionne un ID d'application différent qui dirige vers une autre application.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties">
+      <summary>Fournit des informations sur la connexion d'un émulateur de carte à puce à un lecteur NFC.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Id">
+      <summary>Obtient l'identificateur pour la connexion.</summary>
+      <returns>Identificateur pour la connexion.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Source">
+      <summary>Obtient une valeur enum indiquant s'il s'agit d'une connexion à un lecteur NFC ou à autre élément.</summary>
+      <returns>Valeur enum indiquant s'il s'agit d'une connexion à un lecteur NFC ou à autre élément.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource">
+      <summary>Définit les types valides de sources de connexion de carte à puce.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.NfcReader">
+      <summary>Spécifie une connexion à un lecteur NFC.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.Unknown">
+      <summary>Spécifie une connexion à un élément autre qu'un lecteur NFC.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy">
+      <summary>Représente la stratégie d'émulation de carte actuelle définie par l'utilisateur dans les paramètres du téléphone.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Always">
+      <summary>L'émulation de carte est toujours activée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Never">
+      <summary>L'émulation de carte est désactivée.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenOn">
+      <summary>L'émulation de carte est uniquement activée lorsque l'écran de téléphone est activé.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenUnlocked">
+      <summary>L'émulation de carte est uniquement activée lorsque l'écran de téléphone est déverrouillé.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior">
+      <summary>Définit le comportement de l'invite de déverrouillage.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.AllowUnlockPrompt">
+      <summary>Autorisez une invite de déverrouillage si nécessaire.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.PreventUnlockPrompt">
+      <summary>Empêchez une invite de déverrouillage.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.RequireUnlockPrompt">
+      <summary>Demandez une invite de déverrouillage.</summary>
+    </member>
+  </members>
+</doc>

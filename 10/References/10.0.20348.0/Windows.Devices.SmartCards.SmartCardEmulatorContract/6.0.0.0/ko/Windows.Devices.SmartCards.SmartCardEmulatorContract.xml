@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardEmulatorContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.Devices.SmartCards.KnownSmartCardAppletIds">
+      <summary>알려진 스마트 카드 애플릿 ID를 나타내는 클래스입니다. 속성을 통해 이를 공개합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.PaymentSystemEnvironment">
+      <summary>PSE(결제 시스템 환경) 응용 프로그램의 애플릿 ID를 가져옵니다.</summary>
+      <returns>PSE 애플릿 ID가 포함된 IBuffer입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.ProximityPaymentSystemEnvironment">
+      <summary>PPSE(근접 결제 시스템 환경) 응용 프로그램의 애플릿 ID를 가져옵니다.</summary>
+      <returns>PPSE 애플릿 ID가 포함된 IBuffer입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult">
+      <summary>RequestActivationPolicyChangeAsync 메서드에 대한 반환 값을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Allowed">
+      <summary>정책 변경이 허용되었습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Denied">
+      <summary>정책 변경이 허용되지 않았습니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroup">
+      <summary>디지털화된 카드를 나타내는 클래스입니다. 자체 관리(호스트 카드 에뮬레이션)이거나 물리적 eSE(내장 보안 요소)의 지원을 받을 수 있습니다. 또한 이 클래스는 스마트 카드 애플릿 ID의 컬렉션을 정의하는 것으로 생각할 수도 있습니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor">
+      <summary>SmartCardAppletIdGroup 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor(System.String,Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IBuffer},Windows.Devices.SmartCards.SmartCardEmulationCategory,Windows.Devices.SmartCards.SmartCardEmulationType)">
+      <summary>지정된 매개 변수를 사용하여 SmartCardAppletIdGroup 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="displayName">이 애플릿 ID 그룹의 이름입니다.</param>
+      <param name="appletIds">애플릿 ID의 목록입니다.</param>
+      <param name="emulationCategory">애플릿 ID가 적용되는 스마트 카드, 지불 카드 등의 범주입니다.</param>
+      <param name="emulationType">애플릿 ID가 적용되는 스마트 카드, 호스트 카드 또는 UICC의 형식입니다.</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AppletIds">
+      <summary>애플릿 ID 컬렉션을 가져옵니다.</summary>
+      <returns>애플릿 ID 컬렉션을 가져옵니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AutomaticEnablement">
+      <summary>운영 체제에서 이 AppletIdGroup을 사용할 수 있는지 여부를 나타내는 부울 값을 가져오거나 설정합니다.</summary>
+      <returns>운영 체제에서 이 AppletIdGroup을 사용할 수 있는지 여부를 나타내는 부울 값입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Description">
+      <summary>스마트 카드를 더 쉽게 식별하는 데 도움이 되는 스마트 카드의 더 긴 설명을 가져오거나 설정합니다. 예를 들어 신용 카드의 마지막 네 가지 숫자로 이를 설정할 수 있습니다.</summary>
+      <returns>스마트 카드에 대한 더 긴 설명을 포함하는 문자열입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.DisplayName">
+      <summary>이 애플릿 ID 그룹의 이름을 설정하거나 가져옵니다.</summary>
+      <returns>이 애플릿 ID그룹의 이름입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Logo">
+      <summary>스마트 카드를 나타내는 이미지를 가져오거나 설정합니다. 이는 예를 들어 신용 카드의 실제 모양을 본뜬 이미지일 수 있습니다.</summary>
+      <returns>스마트 카드를 나타내는 이미지를 포함한 스트림에 액세스할 수 있도록 하는 IRandomAccessStreamReference입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.MaxAppletIds">
+      <summary>허용된 애플릿 ID의 최대 수를 가져옵니다.</summary>
+      <returns>허용된 애플릿 ID의 최대 수입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Properties">
+      <summary>스마트 카드에 대한 (일반) 속성 모음을 가져옵니다.</summary>
+      <returns>스마트 카드에 대한 (일반) 속성 모음을 포함하는 ValueSet입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SecureUserAuthenticationRequired">
+      <summary>스마트 카드의 트랜잭션을 처리하기 전에 사용자가 보안 생체 인식을 사용하여 인증해야 하는 스마트 카드인지(예를 들어 사용자가 결제 승인을 위해 지문을 대야 하는지) 나타내는 값을 가져오거나 설정합니다. 이 속성은 eSE(내장 보안 요소) 기반 애플릿에만 적용됩니다.</summary>
+      <returns>스마트 카드의 트랜잭션을 처리하기 전에 사용자가 보안 생체 인식을 사용하여 인증해야 하는 스마트 카드이면 `true`, 그렇지 않으면 `false`입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationCategory">
+      <summary>애플릿 ID가 적용되는 스마트 카드, 지불 카드 등의 범주를 설정하거나 가져옵니다.</summary>
+      <returns>애플릿 ID가 적용되는 스마트 카드, 지불 카드 등의 범주입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationType">
+      <summary>애플릿 ID가 적용되는 스마트 카드, 호스트 카드 또는 UICC의 형식을 설정하거나 가져옵니다.</summary>
+      <returns>애플릿 ID가 적용되는 스마트 카드, 호스트 카드 또는 UICC의 형식입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy">
+      <summary>RequestActivationPolicyChangeAsync 메서드에 전달할 수 있는 유효한 값을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Disabled">
+      <summary>활성화 정책이 사용 안 함으로 설정됩니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Enabled">
+      <summary>활성화 정책이 사용으로 설정됩니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.ForegroundOverride">
+      <summary>활성화 정책이 전경 재정의로 설정됩니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration">
+      <summary>등록된 애플릿 ID 그룹을 나타냅니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.ActivationPolicy">
+      <summary>등록된 애플릿 ID 그룹에 대한 활성화 정책을 가져옵니다.</summary>
+      <returns>등록된 애플릿 ID 그룹에 대한 활성화 정책입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.AppletIdGroup">
+      <summary>등록된 애플릿 ID 그룹을 가져옵니다.</summary>
+      <returns>등록된 애플릿 ID 그룹입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.Id">
+      <summary>이 애플릿 ID 그룹 등록을 나타내는 고유한 ID를 가져옵니다.</summary>
+      <returns>이 애플릿 ID 그룹 등록을 나타내는 고유한 ID입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SmartCardReaderId">
+      <summary>보안 요소와 연결된 모든 SmartCardReader의 ID를 가져옵니다. 이 ID를 SmartCardReader.FromIdAsync에 전달할 수 있습니다.</summary>
+      <returns>보안 요소와 연결된 모든 SmartCardReader의 ID를 포함하는 문자열입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.RequestActivationPolicyChangeAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy)">
+      <summary>이 등록된 애플릿 ID 그룹에 대한 ActivationPolicy를 비동기적으로 변경하려고 시도합니다.</summary>
+      <param name="policy">새 활성화 정책입니다.</param>
+      <returns>정책 변경이 허용되거나 거부되었는지를 나타냅니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetAutomaticResponseApdusAsync(Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu})">
+      <summary>이 SmartCardAppletIdGroupRegistration에 대해 반환할 자동 응답을 포함하는 SmartCardAutomaticResponseApdu 개체의 컬렉션을 설정합니다.</summary>
+      <param name="apdus">자동 응답의 컬렉션입니다.</param>
+      <returns>요청한 작업이 완료되면 완료할 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetPropertiesAsync(Windows.Foundation.Collections.ValueSet)">
+      <summary>SmartCardAppletIdGroup.Properties의 값을 비동기적으로 설정합니다.</summary>
+      <param name="props">스마트 카드에 대한 (일반) 속성 모음을 포함하는 ValueSet입니다.</param>
+      <returns>속성이 설정되면 완료되는 비동기 속성 설정 작업입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu">
+      <summary>스마트 카드 자동 응답 응용 프로그램 프로토콜 데이터 단위(APDU)를 나타냅니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.#ctor(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <summary>클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="commandApdu">NFC 판독기에서 보낸 APDU 명령입니다.</param>
+      <param name="responseApdu">NFC 판독기에 대한 응답입니다.</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AllowWhenCryptogramGeneratorNotPrepared">
+      <summary>사용자 인증 없이 사용할 암호 재료를 준비할 수 없는 경우 자동 APDU 처리를 계속할지 여부를 나타내는 부울 값을 가져오거나 설정합니다.</summary>
+      <returns>사용자 인증 없이 사용할 암호 재료를 준비할 수 없는 경우 자동 APDU 처리를 계속할지 여부를 나타내는 부울 값입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AppletId">
+      <summary>이 APDU에 대한 애플릿 식별자를 가져오거나 설정합니다.</summary>
+      <returns>이 APDU에 대한 애플릿 식별자입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApdu">
+      <summary>APDU에 대한 명령을 가져오거나 설정합니다.</summary>
+      <returns>이 APDU에 대한 명령입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApduBitMask">
+      <summary>APDU 명령에 대한 비트 마스크를 가져오거나 설정합니다.</summary>
+      <returns>APDU 명령에 대한 비트 마스크입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.InputState">
+      <summary>입력 상태를 가져오고 저장합니다.</summary>
+      <returns>입력 상태입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.OutputState">
+      <summary>출력 상태를 가져오고 저장합니다.</summary>
+      <returns>출력 상태입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ResponseApdu">
+      <summary>응용 프로그램 프로토콜 데이터 단위(APDU)에서 응답을 가져오거나 설정합니다.</summary>
+      <returns>APDU의 응답입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ShouldMatchLength">
+      <summary>CommandApdu 및 들어오는 명령의 길이가 정확하게 일치해야 하는지 여부를 나타내는 부울 값을 가져오거나 설정합니다.</summary>
+      <returns>CommandApdu 및 들어오는 명령의 길이가 정확하게 일치해야 하는지 여부를 나타내는 부울 값입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus">
+      <summary>스마트 카드 판독기 자동 응답 상태를 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.None">
+      <summary>상태가 제공되지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.Success">
+      <summary>읽기에 성공했습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.UnknownError">
+      <summary>읽는 중 알 수 없는 오류가 발생했습니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm">
+      <summary>암호 배치 단계에 대한 암호 생성 알고리즘을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.CbcMac">
+      <summary>암호화 블록 체인 메시지 인증 코드(CBC-MAC) 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3MD">
+      <summary>CVC3-MD 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3Umd">
+      <summary>CVC3-UMD 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.DecimalizedMsd">
+      <summary>10진법화 MSD 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.None">
+      <summary>알고리즘을 사용하지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.RsaPkcs1">
+      <summary>공개 키 암호화 표준 1(PKCS) RSA 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha1">
+      <summary>SHA-1 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha256Hmac">
+      <summary>SHA-256 HMAC 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.SignedDynamicApplicationData">
+      <summary>서명된 동적 응용 프로그램 데이터 알고리즘을 사용합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGenerator">
+      <summary>보안 결제 응용 프로그램 및 프로토콜을 지원하는 하드웨어를 제공하는 메커니즘을 나타냅니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramAlgorithms">
+      <summary>지원되는 암호화 알고리즘을 가져옵니다.</summary>
+      <returns>지원되는 알고리즘입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageConfirmationResponseFormats">
+      <summary>지원되는 암호화 재료 패키지 확인 응답 형식을 가져옵니다.</summary>
+      <returns>지원되는 암호화 재료 패키지 확인 응답 형식입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageFormats">
+      <summary>지원되는 암호화 재료 패키지 형식을 가져옵니다.</summary>
+      <returns>지원되는 암호화 재료 패키지 형식입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialTypes">
+      <summary>지원되는 암호화 재료 유형을 가져옵니다.</summary>
+      <returns>지원되는 암호화 재료 유형입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedSmartCardCryptogramStorageKeyCapabilities">
+      <summary>지원되는 스마트 카드 암호 저장소 키 기능을 가져옵니다.</summary>
+      <returns>지원되는 스마트 카드 암호 저장소 키 기능입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.CreateCryptogramMaterialStorageKeyAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities)">
+      <summary>암호 저장소 키를 생성합니다.</summary>
+      <param name="promptingBehavior">사용자 프롬프트 동작입니다.</param>
+      <param name="storageKeyName">새 저장소 키의 이름입니다.</param>
+      <param name="algorithm">저장소 키에 사용하는 암호화 알고리즘입니다.</param>
+      <param name="capabilities">새 저장소 키의 기능입니다.</param>
+      <returns>저장소 키를 만든 후 작업 상태를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialPackageAsync(System.String)">
+      <summary>암호 재료 패키지를 삭제합니다.</summary>
+      <param name="materialPackageName">재료 패키지 이름입니다.</param>
+      <returns>프롬프트 동작을 완료한 후 작업 상태를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialStorageKeyAsync(System.String)">
+      <summary>앱의 저장소 키 및 모든 저장된 패키지를 삭제합니다.</summary>
+      <param name="storageKeyName">저장소 키의 이름입니다.</param>
+      <returns>작업 상태를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialCharacteristicsAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String)">
+      <summary>모든 암호 재료 특성을 가져옵니다.</summary>
+      <param name="promptingBehavior">프롬프트 동작입니다.</param>
+      <param name="materialPackageName">재료 패키지 이름입니다.</param>
+      <returns>특성 결과와 함께 완료되는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync">
+      <summary>모든 암호 재료 패키지 특성을 가져옵니다.</summary>
+      <returns>패키지 특성 결과와 함께 완료되는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync(System.String)">
+      <summary>모든 암호 재료 패키지 특성을 가져옵니다.</summary>
+      <param name="storageKeyName">저장소 키 이름입니다.</param>
+      <returns>패키지 특성 결과와 함께 완료되는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramStorageKeyCharacteristicsAsync">
+      <summary>모든 저장소 키 특성을 가져옵니다.</summary>
+      <returns>특성 결과와 함께 완료되는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetSmartCardCryptogramGeneratorAsync">
+      <summary>스마트 카드 암호 생성기를 가져옵니다.</summary>
+      <returns>생성기를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ImportCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>암호 패키지를 가져옵니다.</summary>
+      <param name="format">패키지의 형식입니다.</param>
+      <param name="storageKeyName">저장소 키의 이름입니다.</param>
+      <param name="materialPackageName">패키지의 이름입니다.</param>
+      <param name="cryptogramMaterialPackage">암호 패키지 데이터를 포함하는 버퍼입니다.</param>
+      <returns>패키지를 가져온 후 작업 상태를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.IsSupported">
+      <summary>SmartCardCryptogramGenerator가 지원되는지 여부를 반환합니다.</summary>
+      <returns>SmartCardCryptogramGenerator가 지원되는 경우 true입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestCryptogramMaterialStorageKeyInfoAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType)">
+      <summary>암호 저장소 키와 관련된 공개 키와 증명 정보를 반환합니다.</summary>
+      <param name="promptingBehavior">유효성 검사를 위해 사용자에게 표시할 프롬프트 동작입니다.</param>
+      <param name="storageKeyName">저장소 키의 이름입니다.</param>
+      <param name="format">저장소 키의 공개 키를 반환할 형식입니다.</param>
+      <returns>스마트 카드 암호 저장소 키 정보를 반환하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestUnlockCryptogramMaterialForUseAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior)">
+      <summary>이전에 가져온 암호 재료 패키지를 사용할 수 있게 요청합니다.</summary>
+      <param name="promptingBehavior">잠금 해제 프롬프트 동작입니다.</param>
+      <returns>프롬프트 동작을 완료한 후 작업 상태를 완료하는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.TryProvePossessionOfCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>이 메서드를 사용하면 결제 앱이 암호 생성기에 재료 패키지 소유권 증명을 쿼리할 수 있습니다.</summary>
+      <param name="promptingBehavior">유효성 검사를 위해 사용자에게 표시할 프롬프트 동작입니다.</param>
+      <param name="responseFormat">응답의 형식입니다.</param>
+      <param name="materialPackageName">재료 패키지 이름입니다.</param>
+      <param name="materialName">재료 이름입니다.</param>
+      <param name="challenge">확인 챌린지 토큰을 포함하는 버퍼입니다. 챌린지 토큰은 다음 C# 정규식을 준수하는 UTF-8 문자를 포함해야 합니다. ```</param>
+      <returns>재료 소유 증명과 함께 완료되는 비동기 작업입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ValidateRequestApduAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>APDU 요청을 확인합니다.</summary>
+      <param name="promptingBehavior">프롬프트 동작입니다.</param>
+      <param name="apduToValidate">유효성을 검사하는 APDU입니다.</param>
+      <param name="cryptogramPlacementSteps">암호 배치 단계입니다.</param>
+      <returns>작업 상태를 완료하는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus">
+      <summary>암호 생성기 메서드에 대한 상태를 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ApduResponseNotSent">
+      <summary>APDU 응답을 보내지 못했습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationCanceled">
+      <summary>권한 부여가 취소되었습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationFailed">
+      <summary>권한 부여에 실패했습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationRequired">
+      <summary>권한 부여가 필요합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.CryptogramMaterialPackageStorageKeyExists">
+      <summary>암호 재료 패키지 저장소 키가 이미 있습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.InvalidCryptogramMaterialUsage">
+      <summary>잘못된 암호 재료 사용입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackage">
+      <summary>암호 재료 패키지가 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackageStorageKey">
+      <summary>암호 재료 패키지 저장소 키가 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NotSupported">
+      <summary>작업이 지원되지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.OtherError">
+      <summary>알 수 없는 오류가 발생했습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.Success">
+      <summary>작업을 완료했습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnknownCryptogramMaterialName">
+      <summary>패키지를 열 때 지정된 재료 이름은 찾을 수 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnsupportedCryptogramMaterialPackage">
+      <summary>암호화 재료 패키지가 지원되지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ValidationFailed">
+      <summary>유효성을 검사하지 못했습니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult">
+      <summary>이 클래스에는 GetAllCryptogramMaterialCharacteristicsAsync에서 반환하는 정보가 포함되어 있습니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult의 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Characteristics">
+      <summary>특성을 가져옵니다.</summary>
+      <returns>특성입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramMaterialCharacteristicsAsync 작업의 작업 상태를 가져옵니다.</summary>
+      <returns>GetAllCryptogramMaterialCharacteristicsAsync 작업의 작업 상태입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult">
+      <summary>이 클래스에는 GetAllCryptogramMaterialPackageCharacteristicsAsync에서 반환하는 정보가 포함되어 있습니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult의 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Characteristics">
+      <summary>특성을 가져옵니다.</summary>
+      <returns>특성입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramMaterialPackageCharacteristicsAsync의 작업 상태를 가져옵니다.</summary>
+      <returns>GetAllCryptogramMaterialPackageCharacteristicsAsync의 작업 상태입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult">
+      <summary>이 클래스에는 GetAllCryptogramStorageKeyCharacteristicsAsync에서 반환하는 정보가 포함되어 있습니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.#ctor">
+      <summary>SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Characteristics">
+      <summary>특성을 가져옵니다.</summary>
+      <returns>특성입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.OperationStatus">
+      <summary>GetAllCryptogramStorageKeyCharacteristicsAsync의 작업 상태를 가져옵니다.</summary>
+      <returns>GetAllCryptogramStorageKeyCharacteristicsAsync의 작업 상태입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics">
+      <summary>이 클래스는 암호 재료의 특성을 포함합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.#ctor">
+      <summary>SmartCardCryptogramMaterialCharacteristics의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedAlgorithms">
+      <summary>허용되는 알고리즘을 가져옵니다.</summary>
+      <returns>허용되는 알고리즘입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedProofOfPossessionAlgorithms">
+      <summary>허용되는 소유 증명 알고리즘의 허용되는 증명을 가져옵니다.</summary>
+      <returns>허용되는 소유 증명 알고리즘의 허용되는 증명입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedValidations">
+      <summary>허용되는 유효성 검사 알고리즘을 가져옵니다.</summary>
+      <returns>허용되는 유효성 검사 알고리즘입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialLength">
+      <summary>재료 길이를 가져옵니다.</summary>
+      <returns>재료 길이입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialName">
+      <summary>재료 이름을 가져옵니다.</summary>
+      <returns>재료 이름입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialType">
+      <summary>재료 유형을 가져옵니다.</summary>
+      <returns>재료 유형입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionMethod">
+      <summary>보호 방법을 가져옵니다.</summary>
+      <returns>보호 방법입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionVersion">
+      <summary>보호 버전을 가져옵니다.</summary>
+      <returns>보호 버전입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics">
+      <summary>이 클래스는 암호 재료 패키지의 특성을 포함합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.#ctor">
+      <summary>SmartCardCryptogramMaterialPackageCharacteristics의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.DateImported">
+      <summary>재료 패키지를 가져온 날짜를 가져옵니다.</summary>
+      <returns>재료 패키지를 가져온 날짜입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageFormat">
+      <summary>패키지 형식을 가져옵니다.</summary>
+      <returns>패키지 형식입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageName">
+      <summary>패키지 이름을 가져옵니다.</summary>
+      <returns>패키지 이름입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.StorageKeyName">
+      <summary>저장소 키 이름을 가져옵니다.</summary>
+      <returns>저장소 키 이름입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat">
+      <summary>TryProvePossessionOfCryptogramMaterialPackageAsync 메서드를 호출할 때 반환되는 소유 증명 형식을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.None">
+      <summary>형식을 지정하지 않았습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.VisaHmac">
+      <summary>비자 해시 기반 메시지 인증 코드(HMAC) 형식입니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat">
+      <summary>암호 재료 패키지 형식을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.JweRsaPki">
+      <summary>재료 패키지는 RSA의 JSON 웹 암호화(JWE)입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.None">
+      <summary>재료에 형식이 없습니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof">
+      <summary>장치가 식별된 암호 재료를 소유하고 있음을 증명하기 위해 챌린지 토큰을 사용하여 TryProvePossessionOfCryptogramMaterialPackageAsync를 호출한 결과를 포함합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.OperationStatus">
+      <summary>증명 작업의 작업 상태를 가져오거나 설정합니다.</summary>
+      <returns>작업 상태입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.Proof">
+      <summary>소유 작업의 증명 결과를 가져옵니다. 이 필드는 OperationStatus 필드가 Success인 경우에만 유효합니다.</summary>
+      <returns>소유 작업의 성공적인 증명의 결과를 포함하는 버퍼입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod">
+      <summary>암호 재료 보호 방법을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.None">
+      <summary>암호 재료를 보호하지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.WhiteBoxing">
+      <summary>화이트박싱으로 암호 재료를 보호합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType">
+      <summary>암호 재료 유형을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.Aes">
+      <summary>재료는 AES를 사용하여 생성되는 데이터입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.None">
+      <summary>재료에 데이터 형식이 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.RsaPkcs1">
+      <summary>재료 데이터는 PKCS #1에 따라 RSA를 사용하여 생성되는 데이터입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.StaticDataAuthentication">
+      <summary>재료는 인증에 대한 정적 데이터입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.TripleDes112">
+      <summary>재료 데이터는 TripleDes112를 사용하여 생성됩니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions">
+      <summary>암호 배치 옵션을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.ChainOutput">
+      <summary>배치 단계의 출력은 지정된 단계에 체인으로 연결해야 합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.None">
+      <summary>배치 옵션에 정의된 형식이 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.UnitsAreInNibbles">
+      <summary>CryptogramOffset, TemplateOffset 및 CryptogramLength 값은 바이트가 아니라 니블입니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep">
+      <summary>보내는 메시지에 암호를 입력하는 지침이 들어 있습니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.#ctor">
+      <summary>새 SmartCardCryptogramPlacementStep 개체를 생성합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.Algorithm">
+      <summary>이 배치 단계의 출력을 다음 지정된 배치 단계의 입력으로 사용할 선택적 배치 단계를 가져오거나 설정합니다.</summary>
+      <returns>연결된 단계의 대상입니다. 값은 이 배치 단계가 연결되지 않았으면 null이어야 합니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.ChainedOutputStep">
+      <summary>이 연결된 단계의 출력을 가져오거나 설정합니다.</summary>
+      <returns>이 연결된 단계의 출력입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramLength">
+      <summary>오프셋에서 가져올 출력의 길이를 가져오거나 설정합니다.</summary>
+      <returns>보내는 메시지에 삽입된 암호는 이 길이를 초과할 수 없습니다. 단위는 CryptogramPlacementOptions 속성의 UnitsAreInNibbles 플래그에 따라 바이트 또는 니블일 수 있습니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialName">
+      <summary>이 단계를 실행할 때 사용할 암호 재료 이름을 가져오거나 설정합니다.</summary>
+      <returns>이 보내는 메시지에 배치할 암호를 생성하는 데 사용할 암호 재료 이름입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialPackageName">
+      <summary>지정된 재료를 포함하는 암호 재료 패키지 이름을 가져오거나 설정합니다.</summary>
+      <returns>명명된 암호 재료를 찾을 수 있는 암호 재료 패키지 이름입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramOffset">
+      <summary>보내는 메시지에 배치할 암호를 생성하는 데 사용할 데이터를 가져오거나 설정합니다.</summary>
+      <returns>전송될 메시지에 복사를 시작할 생성된 암호에 대한 오프셋입니다. 단위는 CryptogramPlacementOptions 필드의 UnitsAreInNibbles 플래그에 따라 바이트 또는 니블일 수 있습니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramPlacementOptions">
+      <summary>암호 배치 옵션을 가져오거나 설정합니다.</summary>
+      <returns>암호 배치 옵션입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.SourceData">
+      <summary>암호 연결의 이 단계에서 암호화할 데이터를 가져오거나 설정합니다.</summary>
+      <returns>소스 데이터입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.TemplateOffset">
+      <summary>생성된 암호를 배치할 대상 출력 버퍼에 대한 오프셋을 가져오거나 설정합니다. 단위는 CryptogramPlacementOptions 필드의 UnitsAreInNibbles 플래그에 따라 바이트 또는 니블일 수 있습니다.</summary>
+      <returns>데이터 템플릿 오프셋입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm">
+      <summary>암호 저장소 키 알고리즘을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.None">
+      <summary>저장소 키가 암호화되지 않았습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.Rsa2048">
+      <summary>저장소 키가 RSA-2048에 의해 암호화되었습니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities">
+      <summary>암호 저장소 키 기능을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.HardwareProtection">
+      <summary>저장소 키에 하드웨어 보호가 있습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.None">
+      <summary>이 열거형에 정의된 저장소 키 기능이 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.UnlockPrompt">
+      <summary>저장소 키는 모든 암호화 작업에 사용하기 전에 제스처가 필요합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics">
+      <summary>이 클래스는 저장소 키의 특성을 포함합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.#ctor">
+      <summary>SmartCardCryptogramStorageKeyCharacteristics의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Algorithm">
+      <summary>알고리즘을 가져옵니다.</summary>
+      <returns>알고리즘입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Capabilities">
+      <summary>기능을 가져옵니다.</summary>
+      <returns>기능입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.DateCreated">
+      <summary>이 저장소 키를 만든 날짜를 가져옵니다.</summary>
+      <returns>이 저장소 키를 만든 날짜입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.StorageKeyName">
+      <summary>저장소 키 이름을 가져옵니다.</summary>
+      <returns>저장소 키 이름입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo">
+      <summary>앱을 등록하고 해당 서비스를 사용하여 키 정보를 확인하도록 저장소 키에 대한 정보를 포함합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Attestation">
+      <summary>증명을 가져옵니다.</summary>
+      <returns>증명을 포함하는 버퍼입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationCertificateChain">
+      <summary>증명 인증서 체인을 가져옵니다.</summary>
+      <returns>증명 인증서 체인을 포함하는 버퍼입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationStatus">
+      <summary>증명 상태를 가져옵니다.</summary>
+      <returns>증명 상태입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Capabilities">
+      <summary>암호 저장소 키 기능을 가져옵니다.</summary>
+      <returns>암호 저장소 키 기능입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationalRequirements">
+      <summary>저장소 키의 운영 요구 사항을 가져옵니다.</summary>
+      <returns>운영 요구 사항입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationStatus">
+      <summary>작업 상태를 가져옵니다.</summary>
+      <returns>작업 상태입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKey">
+      <summary>공개 키를 가져옵니다.</summary>
+      <returns>RequestCryptogramMaterialStorageKeyInfoAsync를 호출할 때 지정된 형식의 공개 키를 포함하는 버퍼입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKeyBlobType">
+      <summary>공개 키 개체의 형식을 가져옵니다. 이 값은 RequestCryptogramMaterialStorageKeyInfoAsync 메서드에서 요청한 공개 키 blob 형식을 반영합니다.</summary>
+      <returns>공개 키 개체의 형식입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus">
+      <summary>키의 증명 상태를 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.NoAttestation">
+      <summary>키에 증명이 없습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithoutTpm">
+      <summary>키는 TPM이 없는 장치의 소프트웨어 키입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithTpm">
+      <summary>키는 TPM이 있는 장치의 소프트웨어 키입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyUnknownAttestationStatus">
+      <summary>키를 지원하는 TPM에 알 수 없는 상태가 있습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithAttestation">
+      <summary>키가 증명이 있는 TPM 키입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithLongTermAttestationFailure">
+      <summary>키가 장기 증명 실패가 있는 TPM 키입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithoutAttestationCapability">
+      <summary>키가 증명을 제공하는 기능이 없는 장치의 TPM 키입니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithTemporaryAttestationFailure">
+      <summary>키가 임시 증명 실패가 있는 TPM 키입니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationCategory">
+      <summary>에뮬레이트할 수 있는 스마트 카드의 유효한 범주를 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Other">
+      <summary>지불 카드 이외의 스마트 카드(예: 충성도 카드, 보안 배치)를 지정합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Payment">
+      <summary>지불 카드를 지정합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationType">
+      <summary>장치에서 스마트 카드를 에뮬레이트하는 메커니즘을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.EmbeddedSE">
+      <summary>장치에서 APDU(응용 프로그램 프로토콜 데이터 단위) 명령을 임베디드된 SE 판독기에 전달하여 스마트 카드를 에뮬레이트합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Host">
+      <summary>장치에서 APDU(응용 프로그램 프로토콜 데이터 단위) 명령을 호스트 응용 프로그램에 전달하여 스마트 카드를 에뮬레이트합니다. 호스트 응용 프로그램은 APDU 명령에 응답합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Uicc">
+      <summary>장치에서 APDU(응용 프로그램 프로토콜 데이터 단위) 명령을 물리적 UICC 카드에 직접 전달하여 스마트 카드를 에뮬레이트합니다. UICC 카드를 일반적으로 SIM 카드라고 합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulator">
+      <summary>스마트 카드 에뮬레이터 장치를 나타냅니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.EnablementPolicy">
+      <summary>사용자가 설정한 현재 카드 에뮬레이션 정책을 가져옵니다.</summary>
+      <returns>전화 설정을 통해 사용자가 설정한 현재 카드 에뮬레이션 정책입니다. 이 속성은 앱에 대해 읽기 전용이므로, 각 휴대폰 설정에서 카드 에뮬레이션 정책을 변경하도록 사용자에게 알려야 합니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.MaxAppletIdGroupRegistrations">
+      <summary>허용된 애플릿 ID 그룹 등록의 최대 수를 가져옵니다.</summary>
+      <returns>허용된 애플릿 ID 그룹 등록의 최대 수입니다.</returns>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ApduReceived">
+      <summary>NFC 컨트롤러에서 APDU(응용 프로그램 프로토콜 데이터 단위)를 수신할 때 발생합니다.</summary>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ConnectionDeactivated">
+      <summary>장치 연결이 물리적으로 끊어지거나 NFC 판독기에서 다른 앱에 대한 연결을 요청할 때 발생합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetAppletIdGroupRegistrationsAsync">
+      <summary>이 스마트 카드에 대해 등록된 애플릿 식별자 그룹을 비동기적으로 가져옵니다.</summary>
+      <returns>이 스마트 카드에 대해 등록된 애플릿 식별자 그룹입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetDefaultAsync">
+      <summary>스마트 카드 기본 에뮬레이터 장치를 나타내는 SmartCardEmulator 개체를 반환합니다.</summary>
+      <returns>비동기 작업이 완료된 후 기본 스마트 카드 에뮬레이터를 반환하거나 스마트 카드 에뮬레이터가 없는 경우 null을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsHostCardEmulationSupported">
+      <summary>이 장치에서 호스트 카드 에뮬레이션이 지원되는지 여부를 나타내는 부울 값을 가져옵니다.</summary>
+      <returns>이 장치에서 호스트 카드 에뮬레이션이 지원되면 true입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsSupported">
+      <summary>SmartCardEmulator가 지원되는지 여부를 반환합니다.</summary>
+      <returns>SmartCardEmulator가 지원되는 경우 true입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.RegisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroup)">
+      <summary>애플릿 ID 그룹을 비동기적으로 등록합니다.</summary>
+      <param name="appletIdGroup">등록할 애플릿 ID 그룹입니다.</param>
+      <returns>등록된 애플릿 ID의 그룹입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.Start">
+      <summary>스마트 카드 에뮬레이터를 시작합니다. 이 메서드는 백그라운드 작업에서 호출해야 합니다.</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.UnregisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration)">
+      <summary>이전에 등록한 애플릿 ID 그룹을 비동기적으로 등록 취소합니다.</summary>
+      <param name="registration">이전에 등록한 애플릿 ID 그룹입니다.</param>
+      <returns>비동기 작업을 제어하는 데 사용되는 IAsyncAction 개체입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs">
+      <summary>ApduReceived 이벤트에 대한 데이터를 가져옵니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.AutomaticResponseStatus">
+      <summary>자동 응답이 이미 성공적으로 전송(**Success**), 시도했지만 실패(**UnknownError**) 또는 자동 응답 규칙과 일치하지 않음(**None**)을 나타내는 SmartCardAutomaticResponseStatus 개체를 가져옵니다.</summary>
+      <returns>자동 응답의 상태를 나타내는 개체입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.CommandApdu">
+      <summary>NFC 판독기에서 보낸 APDU(응용 프로그램 프로토콜 데이터 단위)를 나타냅니다.</summary>
+      <returns>NFC 판독기에서 보낸 APDU(응용 프로그램 프로토콜 데이터 단위)입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.ConnectionProperties">
+      <summary>스마트 카드 에뮬레이터의 연결 속성을 가져옵니다.</summary>
+      <returns>스마트 카드 에뮬레이터의 연결 속성입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.State">
+      <summary>상태를 가져옵니다.</summary>
+      <returns>상태입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer)">
+      <summary>APDU에 응답을 시도합니다.</summary>
+      <param name="responseApdu">응답을 포함하는 버퍼입니다.</param>
+      <returns>작업 완료를 나타내는 부울을 반환하는 비동기 작업을 반환합니다. 부울은 작업이 성공하면 true이고 그렇지 않으면 true입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.IReference{System.UInt32})">
+      <summary>APDU에 응답을 시도합니다.</summary>
+      <param name="responseApdu">응답을 포함하는 버퍼입니다.</param>
+      <param name="nextState">다음 상태를 포함하는 참조입니다.</param>
+      <returns>작업이 완료될 때를 나타내는 부울을 반환하는 비동기 작업을 반환합니다. 부울은 작업이 성공하면 true이고 그렇지 않으면 true입니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>배치 단계에 지시된 대로 발신 메시지에 암호를 배치하여 APDU에 응답하려고 시도합니다.</summary>
+      <param name="responseTemplate">템플릿 응답을 포함하는 버퍼입니다.</param>
+      <param name="cryptogramPlacementSteps">암호 단계를 포함하는 컬렉션입니다.</param>
+      <returns>작업 상태를 완료하는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep},Windows.Foundation.IReference{System.UInt32})">
+      <summary>작업 상태를 완료하는 비동기 작업을 반환합니다.</summary>
+      <param name="responseTemplate">템플릿 응답을 포함하는 버퍼입니다.</param>
+      <param name="cryptogramPlacementSteps">암호 단계를 포함하는 컬렉션입니다.</param>
+      <param name="nextState">다음 상태를 포함하는 참조입니다.</param>
+      <returns>작업 상태를 완료하는 비동기 작업을 반환합니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs">
+      <summary>ConnectionDeactivated 이벤트에 대한 데이터를 제공합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.ConnectionProperties">
+      <summary>스마트 카드 에뮬레이터의 연결 속성을 가져옵니다.</summary>
+      <returns>스마트 카드 에뮬레이터의 연결 속성입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.Reason">
+      <summary>NFC 판독기에 대한 스마트 카드 연결이 비활성화된 이유를 가져옵니다.</summary>
+      <returns>NFC 판독기에 대한 스마트 카드 연결이 비활성화된 이유입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason">
+      <summary>NFC 판독기에 대한 스마트 카드 연결이 비활성화 될 수 있는 이유를 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionLost">
+      <summary>판독기에 대한 물리적 연결이 끊어졌습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionRedirected">
+      <summary>연결은 다른 앱에 확인되는 다른 응용 프로그램 식별자를 선택하는 판독기 터미널로 인해 다른 앱으로 리디렉션됩니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties">
+      <summary>NFC 판독기에 대한 스마트 카드 에뮬레이터 연결 관련 정보를 제공합니다.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Id">
+      <summary>연결에 대한 식별자를 가져옵니다.</summary>
+      <returns>연결에 대한 식별자입니다.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Source">
+      <summary>NFC 판독기에 대한 연결인지 다른 연결인지를 나타내는 열거형 값을 가져옵니다.</summary>
+      <returns>NFC 판독기에 대한 연결인지 다른 연결인지를 나타내는 열거형 값입니다.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource">
+      <summary>스마트 카드 연결 소스의 유효한 형식을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.NfcReader">
+      <summary>NFC 판독기 연결을 지정합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.Unknown">
+      <summary>NFC 판독기 이외의 항목에 대한 연결을 지정합니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy">
+      <summary>전화 설정에서 사용자가 설정한 현재 카드 에뮬레이션 정책을 나타냅니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Always">
+      <summary>카드 에뮬레이션은 항상 켜져 있습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Never">
+      <summary>카드 에뮬레이션은 사용되지 않습니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenOn">
+      <summary>전화 화면이 켜져 있는 경우에만 카드 에뮬레이션이 켜집니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenUnlocked">
+      <summary>전화 화면이 잠금 해제된 경우에만 카드 에뮬레이션이 켜집니다.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior">
+      <summary>잠금 해제 프롬프트 동작을 정의합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.AllowUnlockPrompt">
+      <summary>필요한 경우 잠금 해제 프롬프트를 허용합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.PreventUnlockPrompt">
+      <summary>잠금 해제 프롬프트를 방지합니다.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.RequireUnlockPrompt">
+      <summary>잠금 해제 프롬프트가 필요합니다.</summary>
+    </member>
+  </members>
+</doc>

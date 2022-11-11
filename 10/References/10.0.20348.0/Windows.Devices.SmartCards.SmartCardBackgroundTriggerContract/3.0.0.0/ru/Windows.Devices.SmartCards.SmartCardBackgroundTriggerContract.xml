@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>Представляет событие, вызванное смарт-картой.</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>Инициализирует новый экземпляр SmartCardTrigger</summary>
+      <param name="triggerType">Тип триггера.</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>Получает тип триггера смарт-карты.</summary>
+      <returns>SmartCardTriggerType.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>Определяет, как должно быть запущено приложение смарт-карты.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>Запуск приложения над экраном блокировки.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>Поведение запуска по умолчанию.</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>Предоставляет сведения о триггере смарт-карты.</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>Получает эмулятор смарт-карты, который вызвал активацию события.</summary>
+      <returns>Эмулятор смарт-карты, который вызвал активацию события.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>Получает настроенную смарт-карту.</summary>
+      <returns>Смарт-карта.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>Получает идентификатор аплета для источника триггера смарт-карты.</summary>
+      <returns>ИД аплета.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>Получает данные триггера смарт-карт.</summary>
+      <returns>Данные триггера смарт-карт.</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>Получает тип триггера смарт-карт.</summary>
+      <returns>Тип триггера смарт-карт.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>Пытается асинхронно запустить текущее приложение смарт-карты, передавая указанные аргументы.</summary>
+      <param name="arguments">Строка, задающая аргументы для передачи приложению смарт-карты при запуске.</param>
+      <returns>Логическое значение, указывающее, было ли приложение запущено успешно.</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>Пытается асинхронно запустить текущее приложение смарт-карты, используя заданное поведение и передавая указанные аргументы.</summary>
+      <param name="arguments">Строка, задающая аргументы для передачи приложению смарт-карты при запуске.</param>
+      <param name="behavior">Поведение, используемое при запуске приложения.</param>
+      <returns>Логическое значение, указывающее, было ли приложение запущено успешно.</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>Представляет допустимые типы триггеров смарт-карт.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>Групповая регистрация ИД аплета изменила событие.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>Ведущее приложение активировало событие.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>Событие ввода в поле.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>Событие выхода из поля.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>Событие транзакции.</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>Событие установки карты в средство чтения.</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,14 @@
+{
+    "Options": [
+        {
+            "Applications": [ ],
+            "Description": "Only queried PerfCore add-ins are loaded.",
+            "Name": "SkipAutoLoad",
+            "Runtimes": [
+                "DataLayer"
+            ]
+        }
+    ],
+    "PlugInName": "PerfCore",
+    "Version": "1.0.0"
+}

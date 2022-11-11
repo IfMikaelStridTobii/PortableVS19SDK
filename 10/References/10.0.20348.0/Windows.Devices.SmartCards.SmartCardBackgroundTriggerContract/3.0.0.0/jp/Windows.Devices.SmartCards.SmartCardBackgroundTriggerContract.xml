@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.ApplicationModel.Background.SmartCardTrigger">
+      <summary>スマート カードによってトリガーされるイベントを表します。</summary>
+    </member>
+    <member name="M:Windows.ApplicationModel.Background.SmartCardTrigger.#ctor(Windows.Devices.SmartCards.SmartCardTriggerType)">
+      <summary>SmartCardTrigger の新しいインスタンスを初期化します。</summary>
+      <param name="triggerType">トリガーの種類。</param>
+    </member>
+    <member name="P:Windows.ApplicationModel.Background.SmartCardTrigger.TriggerType">
+      <summary>スマート カード トリガーのトリガーの種類を取得します。</summary>
+      <returns>SmartCardTriggerType。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardLaunchBehavior">
+      <summary>スマート カードのアプリケーションを起動する方法を指定します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.AboveLock">
+      <summary>アプリケーションをロック画面上で起動します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardLaunchBehavior.Default">
+      <summary>既定の起動動作。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerDetails">
+      <summary>スマート カードのトリガーについての詳細を提供します。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.Emulator">
+      <summary>イベントをトリガーしたスマート カード エミュレーターを取得します。</summary>
+      <returns>イベントをトリガーしスマート カード エミュレーター。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SmartCard">
+      <summary>スマート カードを取得します。</summary>
+      <returns>スマート カード。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.SourceAppletId">
+      <summary>スマート カードのトリガーの元のアプレット ID を取得します。</summary>
+      <returns>アプレット ID。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerData">
+      <summary>スマート カードのトリガー データを取得します。</summary>
+      <returns>スマート カードのトリガー データ。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardTriggerDetails.TriggerType">
+      <summary>スマート カードのトリガーの種類を取得します。</summary>
+      <returns>スマート カードのトリガーの種類。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String)">
+      <summary>指定された引数を渡すことによって、現在のスマート カードのアプリケーションの起動を非同期的に試みます。</summary>
+      <param name="arguments">起動時にスマート カードのアプリケーションに渡す引数を指定する文字列。</param>
+      <returns>アプリケーションが正常に起動したかどうかを示すブール値。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardTriggerDetails.TryLaunchCurrentAppAsync(System.String,Windows.Devices.SmartCards.SmartCardLaunchBehavior)">
+      <summary>指定された引数を渡すことによって、指定されたビヘイビアーを使用して現在のスマート カードのアプリケーションを非同期的に起動しようと試みます。</summary>
+      <param name="arguments">起動時にスマート カードのアプリケーションに渡す引数を指定する文字列。</param>
+      <param name="behavior">アプリケーションの起動時に使用するビヘイビアー。</param>
+      <returns>アプリケーションが正常に起動したかどうかを示すブール値。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardTriggerType">
+      <summary>有効なスマート カードのトリガーの種類を表します。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorAppletIdGroupRegistrationChanged">
+      <summary>アプレット ID のグループの登録の変更イベント。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorHostApplicationActivated">
+      <summary>ホスト アプリケーションによってアクティブ化するイベント。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldEntry">
+      <summary>フィールド エントリ イベント。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorNearFieldExit">
+      <summary>フィールド終了イベント。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.EmulatorTransaction">
+      <summary>トランザクション イベント。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardTriggerType.ReaderCardAdded">
+      <summary>リーダー カードがイベントに追加されました。</summary>
+    </member>
+  </members>
+</doc>

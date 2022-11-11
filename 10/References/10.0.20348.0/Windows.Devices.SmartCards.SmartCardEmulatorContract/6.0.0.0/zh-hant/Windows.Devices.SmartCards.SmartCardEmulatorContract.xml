@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Windows.Devices.SmartCards.SmartCardEmulatorContract</name>
+  </assembly>
+  <members>
+    <member name="T:Windows.Devices.SmartCards.KnownSmartCardAppletIds">
+      <summary>類別，表示已知智慧卡小程式識別碼的選取範圍；將透過屬性公開它們。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.PaymentSystemEnvironment">
+      <summary>取得付款系統環境 (PSE) 應用程式的小程式識別碼。</summary>
+      <returns>包含 PSE 小程式識別碼的 IBuffer。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.KnownSmartCardAppletIds.ProximityPaymentSystemEnvironment">
+      <summary>取得鄰近付款系統環境 (PPSE) 應用程式的小程式識別碼。</summary>
+      <returns>包含 PPSE 小程式識別碼的 IBuffer。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult">
+      <summary>定義 RequestActivationPolicyChangeAsync 方法的傳回值。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Allowed">
+      <summary>允許原則變更。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult.Denied">
+      <summary>不允許原則變更。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroup">
+      <summary>類別，代表數位卡，可能是自我管理（主機卡模擬），或受物理嵌入式安全元素 (eSE) 支援。 這個類別也可以被視為智慧卡小程式識別碼的集合。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor">
+      <summary>初始化 SmartCardAppletIdGroup 類別的新執行個體。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroup.#ctor(System.String,Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IBuffer},Windows.Devices.SmartCards.SmartCardEmulationCategory,Windows.Devices.SmartCards.SmartCardEmulationType)">
+      <summary>使用指定的參數，初始化 SmartCardAppletIdGroup 類別的新執行個體。</summary>
+      <param name="displayName">這個 Applet 識別碼群組的名稱。</param>
+      <param name="appletIds">Applet 識別碼的清單。</param>
+      <param name="emulationCategory">小程式識別碼適用的智慧卡類別：付款卡或其他。</param>
+      <param name="emulationType">小程式識別碼適用的智慧卡類型：主機卡或 UICC。</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AppletIds">
+      <summary>取得小程式識別碼的集合。</summary>
+      <returns>小程式識別碼的集合。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.AutomaticEnablement">
+      <summary>取得或設定布林值，表示是否允許作業系統啟用這個 AppletIdGroup。</summary>
+      <returns>布林值，表示是否允許作業系統啟用這個 AppletIdGroup。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Description">
+      <summary>取得或設定智慧卡的延伸描述，協助您更輕鬆地識別智慧卡。 您可以 (舉例來說) 將此設定為信用卡號碼的最後四位數。</summary>
+      <returns>字串，包含智慧卡的延伸描述。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.DisplayName">
+      <summary>取得或設定這個小程式識別碼群組的名稱。</summary>
+      <returns>這個小程式識別碼群組的名稱。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Logo">
+      <summary>取得或設定代表智慧卡的影像。 這可能會 (舉例來說) 模擬信用卡的實體外觀。</summary>
+      <returns>IRandomAccessStreamReference，提供存取包含代表智慧卡之影像的串流。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.MaxAppletIds">
+      <summary>取得允許的小程式識別碼的最大數目。</summary>
+      <returns>允許的小程式識別碼的最大數目。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.Properties">
+      <summary>取得智慧卡的（一般）屬性包。</summary>
+      <returns>ValueSet，包含智慧卡的（一般）屬性包。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SecureUserAuthenticationRequired">
+      <summary>取得或設定值，指出智慧卡在處理交易之前，智慧卡是否要求使用者使用安全的生物特徵辨識來驗證（例如，使用者點選他們的指紋以核准付款）。 此屬性僅適用於嵌入式安全元素 (eSE) 小程式。</summary>
+      <returns>如果智慧卡在處理交易之前，智慧卡要求使用者使用安全的生物特徵辨識來驗證則為 `true`，否則為 `false`。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationCategory">
+      <summary>設定或取得小程式識別碼適用的智慧卡類別，付款卡或其他。</summary>
+      <returns>小程式識別碼適用的智慧卡類別：付款卡或其他。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroup.SmartCardEmulationType">
+      <summary>設定或取得小程式識別碼適用的智慧卡類型，主機卡或 UICC。</summary>
+      <returns>小程式識別碼適用的智慧卡類型：主機卡或 UICC。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy">
+      <summary>定義可以傳遞到 RequestActivationPolicyChangeAsync 方法的有效值。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Disabled">
+      <summary>啟用原則設定為停用。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.Enabled">
+      <summary>啟用原則設定為啟用。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy.ForegroundOverride">
+      <summary>啟用原則設定為前景覆寫。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration">
+      <summary>代表小程式識別碼的已登錄群組。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.ActivationPolicy">
+      <summary>取得已註冊的小程式識別碼群組的啟用原則。</summary>
+      <returns>已註冊的小程式識別碼群組的啟用原則。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.AppletIdGroup">
+      <summary>取得小程式識別碼的已登錄群組。</summary>
+      <returns>已登錄的小程式識別碼群組。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.Id">
+      <summary>取得表示這個小程式識別碼群組註冊的唯一識別碼。</summary>
+      <returns>表示這個小程式識別碼群組註冊的唯一識別碼。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SmartCardReaderId">
+      <summary>取得與安全元素相關聯的任何 SmartCardReader 的識別碼。 您可以將此識別碼傳遞至 SmartCardReader.FromIdAsync。</summary>
+      <returns>字串，包含與安全元素相關聯的任何 SmartCardReader 的識別碼。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.RequestActivationPolicyChangeAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy)">
+      <summary>嘗試以非同步方式變更已登錄的小程式識別碼的這個群組的 ActivationPolicy。</summary>
+      <param name="policy">新的啟用原則。</param>
+      <returns>表示允許或拒絕原則變更。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetAutomaticResponseApdusAsync(Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu})">
+      <summary>設定包含要為此 SmartCardAppletIdGroupRegistration 傳回之自動回應的 SmartCardAutomaticResponseApdu 物件集合。</summary>
+      <param name="apdus">自動回應集合。</param>
+      <returns>會在所要求之作業完成時完成的非同步動作。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration.SetPropertiesAsync(Windows.Foundation.Collections.ValueSet)">
+      <summary>非同步設定 SmartCardAppletIdGroup.Properties 的值。</summary>
+      <param name="props">ValueSet，包含智慧卡的（一般）屬性包。</param>
+      <returns>非同步屬性設定動作，在設定好屬性時完成。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu">
+      <summary>表示智慧卡自動回應應用程式通訊協定資料單位 (APDU)。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.#ctor(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <summary>初始化類別的新執行個體。</summary>
+      <param name="commandApdu">APDU 命令，由 NFC 讀取器傳送。</param>
+      <param name="responseApdu">對 NFC 讀取器的回應。</param>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AllowWhenCryptogramGeneratorNotPrepared">
+      <summary>取得或設定布林值，這個值表示無法在沒有使用者授權情況下準備密碼內容以供使用時，是否要繼續執行自動 APDU 處理。</summary>
+      <returns>布林值，這個值表示無法在沒有使用者授權情況下準備密碼內容以供使用時，是否要繼續執行自動 APDU 處理。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.AppletId">
+      <summary>取得或設定這個 APDU 的小程式識別碼。</summary>
+      <returns>這個 APDU 的小程式識別碼。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApdu">
+      <summary>取得或設定這個 APDU 的命令。</summary>
+      <returns>這個 APDU 的命令。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.CommandApduBitMask">
+      <summary>取得或設定 APDU 命令的位元遮罩。</summary>
+      <returns>APDU 命令的位元遮罩。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.InputState">
+      <summary>取得並進入輸入狀態。</summary>
+      <returns>輸入狀態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.OutputState">
+      <summary>取得並進入輸出狀態。</summary>
+      <returns>輸出狀態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ResponseApdu">
+      <summary>取得或設定來自應用程式通訊協定資料單位 (APDU) 的回應。</summary>
+      <returns>來自 APDU 的回應。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu.ShouldMatchLength">
+      <summary>取得或設定布林值，指出 CommandApdu 和傳入命令的長度是否應該完全相符。</summary>
+      <returns>布林值，指出 CommandApdu 和傳入命令的長度是否應該完全相符。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus">
+      <summary>定義智慧卡讀卡機自動回應的狀態。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.None">
+      <summary>未提供狀態。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.Success">
+      <summary>讀取成功。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus.UnknownError">
+      <summary>讀取失敗，且包含無法識別的錯誤。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm">
+      <summary>定義密碼放置步驟的密碼產生演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.CbcMac">
+      <summary>使用加密區塊鏈結訊息驗證碼 (CBC-MAC) 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3MD">
+      <summary>使用 CVC3-MD 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Cvc3Umd">
+      <summary>使用 CVC3-UMD 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.DecimalizedMsd">
+      <summary>使用十進位化 MSD 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.None">
+      <summary>不使用任何演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.RsaPkcs1">
+      <summary>使用公開金鑰加密標準 1 (PKCS) RSA 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha1">
+      <summary>使用 SHA-1 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.Sha256Hmac">
+      <summary>使用 SHA-256 HMAC 演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm.SignedDynamicApplicationData">
+      <summary>使用簽署的動態應用程式資料演算法。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGenerator">
+      <summary>表示提供硬體的機制，支援安全的付款應用程式和通訊協定。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramAlgorithms">
+      <summary>取得支援的密碼演算法。</summary>
+      <returns>支援的演算法。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageConfirmationResponseFormats">
+      <summary>取得支援的密碼內容封裝確認回應格式。</summary>
+      <returns>支援的密碼內容封裝確認回應格式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialPackageFormats">
+      <summary>取得支援的密碼內容封裝格式。</summary>
+      <returns>支援的密碼內容封裝格式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedCryptogramMaterialTypes">
+      <summary>取得支援的密碼內容類型。</summary>
+      <returns>支援的密碼內容類型。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.SupportedSmartCardCryptogramStorageKeyCapabilities">
+      <summary>取得支援的智慧卡密碼儲存體金鑰功能。</summary>
+      <returns>支援的智慧卡密碼儲存體金鑰功能。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.CreateCryptogramMaterialStorageKeyAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm,Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities)">
+      <summary>產生密碼儲存體金鑰。</summary>
+      <param name="promptingBehavior">使用者提示行為。</param>
+      <param name="storageKeyName">新的儲存體金鑰的名稱。</param>
+      <param name="algorithm">搭配儲存體金鑰使用的加密演算法。</param>
+      <param name="capabilities">新的儲存體金鑰的功能。</param>
+      <returns>非同步作業，會在嘗試建立儲存體金鑰後完成並且有作業狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialPackageAsync(System.String)">
+      <summary>刪除密碼內容封裝。</summary>
+      <param name="materialPackageName">內容封裝名稱。</param>
+      <returns>非同步作業，會在嘗試行為完成後完成並且有作業狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.DeleteCryptogramMaterialStorageKeyAsync(System.String)">
+      <summary>刪除應用程式的儲存體金鑰及所有儲存的封裝。</summary>
+      <param name="storageKeyName">儲存體金鑰的名稱。</param>
+      <returns>非同步作業，其完成時會有作業狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialCharacteristicsAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String)">
+      <summary>取得所有密碼內容特性。</summary>
+      <param name="promptingBehavior">提示行為。</param>
+      <param name="materialPackageName">內容封裝名稱。</param>
+      <returns>傳回完成時會有特性結果的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync">
+      <summary>取得所有密碼內容封裝特性。</summary>
+      <returns>傳回完成時會有封裝特性結果的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramMaterialPackageCharacteristicsAsync(System.String)">
+      <summary>取得所有密碼內容封裝特性。</summary>
+      <param name="storageKeyName">儲存體金鑰名稱。</param>
+      <returns>傳回完成時會有封裝特性結果的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetAllCryptogramStorageKeyCharacteristicsAsync">
+      <summary>取得所有儲存體金鑰特性。</summary>
+      <returns>傳回完成時會有特性結果的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.GetSmartCardCryptogramGeneratorAsync">
+      <summary>取得智慧卡密碼產生器。</summary>
+      <returns>非同步作業，會以產生器完成。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ImportCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>匯入密碼封裝。</summary>
+      <param name="format">封裝的格式。</param>
+      <param name="storageKeyName">儲存體金鑰的名稱。</param>
+      <param name="materialPackageName">封裝的名稱。</param>
+      <param name="cryptogramMaterialPackage">包含密碼封裝資料的緩衝區。</param>
+      <returns>非同步作業，會在嘗試匯入封裝後完成並且有作業狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.IsSupported">
+      <summary>傳回是否支援 SmartCardCryptogramGenerator。</summary>
+      <returns>如果支援 SmartCardCryptogramGenerator，則為 True。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestCryptogramMaterialStorageKeyInfoAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,System.String,Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType)">
+      <summary>傳回與密碼儲存體金鑰相關的公開金鑰和證明資訊。</summary>
+      <param name="promptingBehavior">要對使用者顯示以進行驗證的提示行為。</param>
+      <param name="storageKeyName">儲存體金鑰的名稱。</param>
+      <param name="format">儲存體金鑰的公開金鑰傳回時採用的格式。</param>
+      <returns>傳回智慧卡密碼儲存體金鑰資訊的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.RequestUnlockCryptogramMaterialForUseAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior)">
+      <summary>要求先前匯入的密碼內容封裝準備就緒可供使用。</summary>
+      <param name="promptingBehavior">解除鎖定提示行為。</param>
+      <returns>非同步作業，會在嘗試行為完成後完成並且有作業狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.TryProvePossessionOfCryptogramMaterialPackageAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat,System.String,System.String,Windows.Storage.Streams.IBuffer)">
+      <summary>這個方法允許付款應用程式查詢密碼產生器，取得內容封裝擁有權的證明。</summary>
+      <param name="promptingBehavior">要對使用者顯示以進行驗證的提示行為。</param>
+      <param name="responseFormat">回應的格式。</param>
+      <param name="materialPackageName">內容封裝名稱。</param>
+      <param name="materialName">內容名稱。</param>
+      <param name="challenge">包含確認挑戰語彙基元的緩衝區。 挑戰語彙基元必須包含符合下列 C# 規則運算式的 UTF-8 字元。 ```</param>
+      <returns>透過內容擁有權證明完成的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGenerator.ValidateRequestApduAsync(Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior,Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>驗證 APDU 要求。</summary>
+      <param name="promptingBehavior">提示行為。</param>
+      <param name="apduToValidate">要驗證的 APDU。</param>
+      <param name="cryptogramPlacementSteps">密碼放置步驟。</param>
+      <returns>傳回完成時會有作業狀態的非同步作業。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus">
+      <summary>定義密碼產生器方法的狀態。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ApduResponseNotSent">
+      <summary>APDU 回應未傳送。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationCanceled">
+      <summary>授權已取消。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationFailed">
+      <summary>授權失敗。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.AuthorizationRequired">
+      <summary>需要授權。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.CryptogramMaterialPackageStorageKeyExists">
+      <summary>密碼內容封裝儲存體金鑰已存在。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.InvalidCryptogramMaterialUsage">
+      <summary>無效的密碼內容使用方式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackage">
+      <summary>沒有密碼內容封裝。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NoCryptogramMaterialPackageStorageKey">
+      <summary>沒有密碼內容封裝儲存體金鑰。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.NotSupported">
+      <summary>不支援此作業。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.OtherError">
+      <summary>發生未知的錯誤。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.Success">
+      <summary>作業順利完成。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnknownCryptogramMaterialName">
+      <summary>開啟封裝時，找不到指定的內容名稱。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.UnsupportedCryptogramMaterialPackage">
+      <summary>不支援此密碼內容封裝。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus.ValidationFailed">
+      <summary>驗證失敗。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult">
+      <summary>這個類別包含 GetAllCryptogramMaterialCharacteristicsAsync 傳回的資訊。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.#ctor">
+      <summary>建立 SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult 的執行個體。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Characteristics">
+      <summary>取得特性。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.OperationStatus">
+      <summary>取得 GetAllCryptogramMaterialCharacteristicsAsync 的作業狀態。</summary>
+      <returns>GetAllCryptogramMaterialCharacteristicsAsync 的作業狀態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult">
+      <summary>這個類別包含 GetAllCryptogramMaterialPackageCharacteristicsAsync 傳回的資訊。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.#ctor">
+      <summary>建立 SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult 的執行個體。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Characteristics">
+      <summary>取得特性。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.OperationStatus">
+      <summary>取得 GetAllCryptogramMaterialPackageCharacteristicsAsync 的作業狀態。</summary>
+      <returns>GetAllCryptogramMaterialPackageCharacteristicsAsync 的作業狀態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult">
+      <summary>這個類別包含 GetAllCryptogramStorageKeyCharacteristicsAsync 傳回的資訊。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.#ctor">
+      <summary>建立 SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult 的新執行個體。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Characteristics">
+      <summary>取得特性。</summary>
+      <returns>特性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.OperationStatus">
+      <summary>取得 GetAllCryptogramStorageKeyCharacteristicsAsync 的作業狀態。</summary>
+      <returns>GetAllCryptogramStorageKeyCharacteristicsAsync 的作業狀態。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics">
+      <summary>這個類別包含密碼內容的特性。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.#ctor">
+      <summary>建立 SmartCardCryptogramMaterialCharacteristics 的新執行個體</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedAlgorithms">
+      <summary>取得允許的演算法。</summary>
+      <returns>允許的演算法。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedProofOfPossessionAlgorithms">
+      <summary>取得擁有權演算法允許的證明。</summary>
+      <returns>擁有權演算法允許的證明。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.AllowedValidations">
+      <summary>取得允許的驗證演算法。</summary>
+      <returns>允許的驗證演算法。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialLength">
+      <summary>取得內容長度。</summary>
+      <returns>內容長度。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialName">
+      <summary>取得內容名稱。</summary>
+      <returns>內容名稱。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.MaterialType">
+      <summary>取得內容類型。</summary>
+      <returns>內容類型。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionMethod">
+      <summary>取得保護方式。</summary>
+      <returns>保護方式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics.ProtectionVersion">
+      <summary>取得保護版本。</summary>
+      <returns>保護版本。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics">
+      <summary>這個類別包含密碼內容封裝的特性。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.#ctor">
+      <summary>建立 SmartCardCryptogramMaterialPackageCharacteristics 的新執行個體。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.DateImported">
+      <summary>取得匯入內容封裝的日期。</summary>
+      <returns>匯入內容封裝的日期。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageFormat">
+      <summary>取得封裝格式。</summary>
+      <returns>封裝格式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.PackageName">
+      <summary>取得封裝名稱。</summary>
+      <returns>封裝名稱。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics.StorageKeyName">
+      <summary>取得儲存體金鑰名稱。</summary>
+      <returns>儲存體金鑰名稱。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat">
+      <summary>定義呼叫 TryProvePossessionOfCryptogramMaterialPackageAsync 方法時傳回的擁有權證明格式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.None">
+      <summary>沒有指定任何格式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat.VisaHmac">
+      <summary>Visa 雜湊式訊息驗證碼 (HMAC) 格式。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat">
+      <summary>定義密碼內容封裝格式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.JweRsaPki">
+      <summary>內容封裝是由 RSA 進行 JSON Web 加密 (JWE)。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat.None">
+      <summary>內容沒有格式。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof">
+      <summary>包含呼叫 TryProvePossessionOfCryptogramMaterialPackageAsync 的結果，採用挑戰語彙基元證明裝置擁有識別的密碼內容。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.OperationStatus">
+      <summary>取得或設定證明作業的作業狀態。</summary>
+      <returns>作業狀態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof.Proof">
+      <summary>取得擁有權證明作業的結果。 這個欄位只有在 OperationStatus 欄位為 [成功] 時才有效。</summary>
+      <returns>緩衝區，當中包含擁有權證明作業成功的結果。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod">
+      <summary>定義密碼內容保護方式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.None">
+      <summary>不保護密碼內容。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod.WhiteBoxing">
+      <summary>透過白箱加密 (Whiteboxing) 保護密碼內容。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType">
+      <summary>定義密碼內容類型。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.Aes">
+      <summary>內容是使用 AES 所產生的資料。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.None">
+      <summary>內容沒有資料類型。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.RsaPkcs1">
+      <summary>內容是使用 RSA 根據 PKCS #1 產生的資料</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.StaticDataAuthentication">
+      <summary>內容是用於驗證的靜態資料。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramMaterialType.TripleDes112">
+      <summary>內容是使用 TripleDes112 產生的資料。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions">
+      <summary>定義密碼放置選項。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.ChainOutput">
+      <summary>放置步驟的輸出應鏈結至指定的步驟中。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.None">
+      <summary>放置選項沒有定義的格式。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions.UnitsAreInNibbles">
+      <summary>CryptogramOffset、TemplateOffset 和 CryptogramLength 值的單位是半位元組，不是位元組。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep">
+      <summary>包含在傳出訊息中放置密碼的指示。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.#ctor">
+      <summary>建構新的 SmartCardCryptogramPlacementStep 物件。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.Algorithm">
+      <summary>取得或設定選擇性的放置步驟，將使用這個放置步驟的輸出做為下一個指定的放置步驟的輸入。</summary>
+      <returns>鏈結步驟的目標。 如果這個放置步驟未鏈結，值必須是 null。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.ChainedOutputStep">
+      <summary>取得或設定這個鏈結步驟的輸出。</summary>
+      <returns>這個鏈結步驟的輸出。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramLength">
+      <summary>取得或設定要從位移取得的輸出長度。</summary>
+      <returns>插入傳出訊息內的密碼不可超過此長度。 單位可以是位元組或半位元組，以 CryptogramPlacementOptions 屬性的 UnitsAreInNibbles 旗標為基礎。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialName">
+      <summary>取得或設定密碼內容名稱，於執行此步驟時使用。</summary>
+      <returns>密碼內容名稱，在產生要放入此傳出訊息的密碼時使用。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramMaterialPackageName">
+      <summary>取得或設定密碼內容封裝名稱，當中包含指定的內容。</summary>
+      <returns>密碼內容封裝名稱，當中可找到具名密碼內容。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramOffset">
+      <summary>取得或設定資料，用來產生要放入傳出訊息中的密碼。</summary>
+      <returns>在所產生的密碼中，要開始複製到將要傳送之訊息中的位移。 單位可以是位元組或半位元組，以 CryptogramPlacementOptions 欄位的 UnitsAreInNibbles 旗標為基礎。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.CryptogramPlacementOptions">
+      <summary>取得或設定密碼放置選項。</summary>
+      <returns>密碼放置選項。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.SourceData">
+      <summary>取得或設定將在這個鏈結密碼步驟中加密的資料。</summary>
+      <returns>來源資料。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep.TemplateOffset">
+      <summary>取得或設定目標輸出緩衝區內的位移，產生的密碼將放置在此處。 單位可以是位元組或半位元組，以 CryptogramPlacementOptions 欄位的 UnitsAreInNibbles 旗標為基礎。</summary>
+      <returns>資料範本位移。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm">
+      <summary>定義密碼儲存體金鑰演算法。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.None">
+      <summary>儲存體金鑰未加密。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm.Rsa2048">
+      <summary>儲存體金鑰是由 RSA-2048 加密。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities">
+      <summary>定義密碼儲存體金鑰功能。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.HardwareProtection">
+      <summary>儲存體金鑰具有硬體保護。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.None">
+      <summary>儲存體金鑰沒有任何在此列舉中定義的功能。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities.UnlockPrompt">
+      <summary>儲存體金鑰需要手勢，才能在任何加密作業中使用。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics">
+      <summary>這個類別包含儲存體金鑰的特性。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.#ctor">
+      <summary>建立 SmartCardCryptogramStorageKeyCharacteristics 的新執行個體。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Algorithm">
+      <summary>取得演算法。</summary>
+      <returns>演算法。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.Capabilities">
+      <summary>取得功能。</summary>
+      <returns>功能。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.DateCreated">
+      <summary>取得這個儲存體金鑰的建立日期。</summary>
+      <returns>這個儲存體金鑰的建立日期。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics.StorageKeyName">
+      <summary>取得儲存體金鑰名稱。</summary>
+      <returns>儲存體金鑰名稱。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo">
+      <summary>包含有關儲存體金鑰的資訊，讓應用程式可以註冊和認證金鑰資訊與其服務。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Attestation">
+      <summary>取得證明。</summary>
+      <returns>包含證明的緩衝區。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationCertificateChain">
+      <summary>取得證明憑證鏈結。</summary>
+      <returns>包含證明憑證鏈結的緩衝區。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.AttestationStatus">
+      <summary>取得證明狀態。</summary>
+      <returns>證明狀態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.Capabilities">
+      <summary>取得密碼儲存體金鑰功能。</summary>
+      <returns>密碼儲存體金鑰功能。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationalRequirements">
+      <summary>取得儲存體金鑰的操作需求。</summary>
+      <returns>操作需求。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.OperationStatus">
+      <summary>取得作業狀態。</summary>
+      <returns>作業狀態。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKey">
+      <summary>取得公開金鑰。</summary>
+      <returns>包含公開金鑰的緩衝區，採用呼叫 RequestCryptogramMaterialStorageKeyInfoAsync 時指定的格式。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo.PublicKeyBlobType">
+      <summary>取得公開金鑰物件的類型。 這個值會反映 RequestCryptogramMaterialStorageKeyInfoAsync 方法中要求的公開金鑰 Blob 類型。</summary>
+      <returns>公開金鑰物件的類型。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus">
+      <summary>定義金鑰的證明狀態。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.NoAttestation">
+      <summary>金鑰沒有證明。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithoutTpm">
+      <summary>金鑰是裝置上的軟體金鑰，沒有 TPM。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.SoftwareKeyWithTpm">
+      <summary>金鑰是裝置上的軟體金鑰，有 TPM。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyUnknownAttestationStatus">
+      <summary>支援金鑰的 TPM 包含未知的證明狀態。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithAttestation">
+      <summary>該金鑰是有認證的 TPM 金鑰。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithLongTermAttestationFailure">
+      <summary>金鑰是 TPM 金鑰，有長期證明錯誤。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithoutAttestationCapability">
+      <summary>金鑰是裝置上的 TPM 金鑰，但無法提供證明。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus.TpmKeyWithTemporaryAttestationFailure">
+      <summary>金鑰是 TPM 金鑰，有暫時的證明錯誤。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationCategory">
+      <summary>定義可以模擬的智慧卡的有效類別。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Other">
+      <summary>指定除了付款卡之外的智慧卡，例如會員卡或安全性徽章。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationCategory.Payment">
+      <summary>指定付款卡。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulationType">
+      <summary>定義裝置模擬智慧卡的機制。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.EmbeddedSE">
+      <summary>裝置透過將應用程式通訊協定資料單位 (APDU) 命令轉送至內嵌 SE 閱讀器的方式模擬智慧卡。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Host">
+      <summary>裝置透過將應用程式通訊協定資料單位 (APDU) 命令轉送至對主應用程式，而後者予以回應，模擬智慧卡。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulationType.Uicc">
+      <summary>裝置透過將應用程式通訊協定資料單位 (APDU) 命令直接轉送至實體 UICC 卡的方式模擬智慧卡。 UICC 卡通常稱為 SIM 卡。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulator">
+      <summary>表示智慧卡模擬器裝置。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.EnablementPolicy">
+      <summary>取得使用者設定的目前卡片模擬原則。</summary>
+      <returns>使用者透過電話設定所設定的目前卡片模擬原則。 這個屬性對於應用程式是唯讀的，如果其行動電信業者允許，您應該告知使用者在他們的手機設定中變更智慧卡模擬原則。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulator.MaxAppletIdGroupRegistrations">
+      <summary>取得允許的小程式識別碼群組註冊的最大數目。</summary>
+      <returns>允許的小程式識別碼群組註冊的最大數目。</returns>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ApduReceived">
+      <summary>發生於應用程式通訊協定資料單位 (APDU) 由 NFC 控制器接收時。</summary>
+    </member>
+    <member name="E:Windows.Devices.SmartCards.SmartCardEmulator.ConnectionDeactivated">
+      <summary>發生於與裝置的連接已中斷時，或是 NFC 讀取器要求與其他應用程式的連線時。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetAppletIdGroupRegistrationsAsync">
+      <summary>以非同步方式取得此智慧卡的已註冊小程式識別碼群組。</summary>
+      <returns>此智慧卡的已註冊小程式識別碼群組。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.GetDefaultAsync">
+      <summary>傳回 SmartCardEmulator 物件，表示預設的智慧卡模擬器裝置。</summary>
+      <returns>在非同步作業完成後，會傳回預設智慧卡模擬器或 null（如果不存在智慧卡模擬器）。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsHostCardEmulationSupported">
+      <summary>取得布林值，指出此裝置是否支援主機卡模擬 (HCE)。</summary>
+      <returns>如果此裝置支援主機卡模擬 (HCE)，則為 true。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.IsSupported">
+      <summary>傳回是否支援 SmartCardEmulator。</summary>
+      <returns>如果支援 SmartCardEmulator，則為 True。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.RegisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroup)">
+      <summary>非同步登錄小程式識別碼群組。</summary>
+      <param name="appletIdGroup">要註冊的小程式識別碼群組。</param>
+      <returns>已註冊的小程式識別碼群組。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.Start">
+      <summary>啟動智慧卡模擬器。 這個方法必須從背景工作呼叫。</summary>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulator.UnregisterAppletIdGroupAsync(Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration)">
+      <summary>非同步取消註冊先前註冊的小程式識別碼群組。</summary>
+      <param name="registration">先前註冊的小程式識別碼群組。</param>
+      <returns>用於控制非同步作業的 IAsyncAction 物件。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs">
+      <summary>為 ApduReceived 事件提供資料。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.AutomaticResponseStatus">
+      <summary>取得 SmartCardAutomaticResponseStatus 物件，指出自動回應已經成功傳送 (**Success**)、已嘗試但失敗 (**UnknownError**)，或未與任何自動回應規則 (**None**) 相符。</summary>
+      <returns>表示自動回應狀態的物件。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.CommandApdu">
+      <summary>表示 NFC 讀取器傳送的應用協定資料單位 (APDU) 命令。</summary>
+      <returns>NFC 讀取器傳送的應用程式通訊協定資料單位 (APDU) 命令。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.ConnectionProperties">
+      <summary>取得智慧卡模擬器的連接屬性。</summary>
+      <returns>智慧卡模擬器的連接屬性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.State">
+      <summary>取得狀態。</summary>
+      <returns>狀態。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer)">
+      <summary>嘗試回應 APDU。</summary>
+      <param name="responseApdu">包含回應的緩衝區。</param>
+      <returns>傳回非同步作業，該作業會在作業完成表示時傳回布林值。 如果作業成功，則布林值為 true，否則為 false。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.IReference{System.UInt32})">
+      <summary>嘗試回應 APDU。</summary>
+      <param name="responseApdu">包含回應的緩衝區。</param>
+      <param name="nextState">包含下一個狀態的參考。</param>
+      <returns>傳回作業完成時會傳回布林值的非同步作業。 如果作業順利完成，則布林值為 true，否則為 false。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep})">
+      <summary>嘗試回應 APDU，並依照放置步驟的指示將密碼置於傳出訊息中。</summary>
+      <param name="responseTemplate">包含範本回應的緩衝區。</param>
+      <param name="cryptogramPlacementSteps">包含密碼步驟的集合。</param>
+      <returns>傳回完成時會有作業狀態的非同步作業。</returns>
+    </member>
+    <member name="M:Windows.Devices.SmartCards.SmartCardEmulatorApduReceivedEventArgs.TryRespondWithCryptogramsAsync(Windows.Storage.Streams.IBuffer,Windows.Foundation.Collections.IIterable{Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep},Windows.Foundation.IReference{System.UInt32})">
+      <summary>傳回完成時會有作業狀態的非同步作業。</summary>
+      <param name="responseTemplate">包含範本回應的緩衝區。</param>
+      <param name="cryptogramPlacementSteps">包含密碼步驟的集合。</param>
+      <param name="nextState">包含下一個狀態的參考。</param>
+      <returns>傳回完成時會有作業狀態的非同步作業。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs">
+      <summary>提供 ConnectionDeactivated 事件的資料。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.ConnectionProperties">
+      <summary>取得智慧卡模擬器的連接屬性。</summary>
+      <returns>智慧卡模擬器的連接屬性。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedEventArgs.Reason">
+      <summary>取得與 NFC 讀取器的智慧卡連線停用的原因。</summary>
+      <returns>與 NFC 讀取器的智慧卡連線停用的原因。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason">
+      <summary>定義與 NFC 讀取器的智慧卡連線可能會停用的原因。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionLost">
+      <summary>與讀取器的實體連線已中斷。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason.ConnectionRedirected">
+      <summary>連線會重新導向至另一個應用程式，因為讀卡機終端選取不同的應用程式識別碼，它會解析為不同的應用程式。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties">
+      <summary>提供有關與 NFC 讀取器的智慧卡模擬器連線的資訊。</summary>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Id">
+      <summary>取得連線的識別碼。</summary>
+      <returns>連線的識別碼。</returns>
+    </member>
+    <member name="P:Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties.Source">
+      <summary>取得列舉值，指出與 NFC 讀取器或其他進行連線。</summary>
+      <returns>列舉值，指出與 NFC 讀取器或其他進行連線。</returns>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource">
+      <summary>定義智慧卡連線來源的有效型別。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.NfcReader">
+      <summary>指定 NFC 讀取器連線。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource.Unknown">
+      <summary>指定與 NFC 讀取器以外其他來源的連接。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorContract">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy">
+      <summary>表示使用者在電話設定中設定的目前卡片模擬原則。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Always">
+      <summary>一律開啟卡片模擬。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.Never">
+      <summary>卡片模擬已停用。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenOn">
+      <summary>卡片模擬只有在電話螢幕開啟時才會開啟。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy.ScreenUnlocked">
+      <summary>卡片模擬只有在電話螢幕解除鎖定時才會開啟。</summary>
+    </member>
+    <member name="T:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior">
+      <summary>定義解除鎖定提示行為。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.AllowUnlockPrompt">
+      <summary>如有需要，允許解除鎖定提示。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.PreventUnlockPrompt">
+      <summary>防止解除鎖定提示。</summary>
+    </member>
+    <member name="F:Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior.RequireUnlockPrompt">
+      <summary>需要解除鎖定提示。</summary>
+    </member>
+  </members>
+</doc>
